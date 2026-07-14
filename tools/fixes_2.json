@@ -1,0 +1,136 @@
+{
+"449": {"options": ["In the rain", "In the snow", "In the night", "In a strong wind"], "answer": 0},
+"450": {"options": ["Use sunglasses to keep the headlight from hitting the eyes", "Turn on your headlights on low beam", "Turn on the hazard warning lights", "Drive very fast"], "answer": 1},
+"451": {"options": ["Motorcyclists", "Cyclists", "Pedestrians", "All of the above"], "answer": 3},
+"452": {"options": ["To give advance notice of their presence when crossing", "To warn you that you are in danger", "Warning when you're speeding", "To let you know they are on their way"], "answer": 0},
+"454": {"options": ["Drive in the middle of the road to avoid splashing water on pedestrians", "Beware of pedestrians walking at high risk", "Help an elderly person to cross the road", "Drive at a specified speed limit"], "answer": 1},
+"455": {"multi": [
+ {"q": "The holder of a learner's license may not drive a vehicle except in the following manner:", "options": ["Drive at less than 50 km per hour in the night", "Be accompanied by a licensed person who can control the vehicle", "Drive only during the day time", "All of the above"], "answer": 1},
+ {"q": "At what point do you stop the car?", "options": ["When the vehicle is involved in an accident", "At a red traffic light", "When a police officer stops you", "All of the above"], "answer": 3}
+]},
+"456": {"options": ["To avoid overcharging the battery", "To avoid misleading other road users", "In order not to surprise other road users", "To avoid damage to the indicator relay"], "answer": 1},
+"457": {"options": ["15 meters", "10 meters", "It depends on the speed of the vehicle in front of you", "A sufficient distance to avoid a collision if the vehicle in front suddenly slows down and stops"], "answer": 3},
+"458": {"options": ["There's a radar speed trap in front", "They are making way for you", "They warn you of their presence", "There's something wrong with your car"], "answer": 2},
+"459": {"options": ["Continue if the sound from the engine is correct", "It is only a temporary power outage", "Deal with the problem when convenient", "Fix the problem quickly and safely"], "answer": 3},
+"460": {"options": ["Speedometer", "Horn", "Windscreen wiper", "All of the above"], "answer": 3},
+"461": {"options": ["Seat belt", "Safety door latches", "Padded instrument panel", "None of the above is correct"], "answer": 0},
+"462": {"options": ["You should never use someone else's car", "Don't use someone else's car seat", "Adjust the seat forward to suit you", "Drive the vehicle in the same position"], "answer": 2},
+"463": {"options": ["Black background and white numbers", "Yellow background and white numbers", "White background and black letters", "White background and yellow numbers"], "answer": 2},
+"464": {"multi": [
+ {"q": "If you have a valid driver's license for a light motor vehicle, which of the following vehicles are you allowed to drive?", "options": ["Only the motor car", "Motorcycles over 50cc", "All motor vehicles", "Motorcycle"], "answer": 0},
+ {"q": "What does the insurance company do if you are involved in an accident while driving without a valid driver's license?", "options": ["Compensation to be paid for damages", "Compensation will be given for all damages", "No compensation for losses", "Compensation will be given in case of death"], "answer": 2}
+]},
+"467": {"options": ["Since there are three registration marks, it is enough to display any one", "Yes, all the time", "No, there is no restriction", "Yes, but partially hiding the number plate is not a hindrance"], "answer": 1},
+"468": {"options": ["Protect the area", "Inform the authorities", "Care for the injured", "All of the above"], "answer": 3},
+"470": {"options": ["Call the police", "Warn other traffic", "Call an ambulance", "All of the above"], "answer": 2},
+"471": {"options": ["Due to driver negligence", "Due to vehicle malfunction", "Due to difficult road or weather conditions", "All of the above"], "answer": 3},
+"472": {"options": ["36 to 45 years", "55 years and above", "46 to 55 years", "17 to 25 years"], "answer": 3},
+"473": {"multi": [
+ {"q": "Which of the following impairments can affect an elderly person's driving ability?", "options": ["Failure to understand road signs", "Playing music in the vehicle", "Lack of quick reaction times", "Inability to signal properly"], "answer": 2},
+ {"q": "Do not use a mobile phone while driving…", "options": ["Until you are satisfied that there is no other traffic nearby", "Unless you can drive with one hand", "Because it may distract you from the road ahead", "Because there will be police checks along the way"], "answer": 2}
+]},
+"475": {"options": ["Start driving, but open a window", "Drive slower than usual and turn on the radio", "Have a drink to help you relax before you drive", "Calm down before you start driving"], "answer": 3},
+"476": {"multi": [
+ {"q": "How can you calm down if the behaviour of the driver of another vehicle upsets you?", "options": ["Stop and rest for a while", "Shout abusively", "Make gestures with your hands", "Follow their car with headlights on"], "answer": 0},
+ {"q": "Alcohol mainly affects…", "options": ["Vision", "Speech", "Hearing", "Judgment"], "answer": 3}
+]},
+"477": {"options": ["You can eat between two pegs", "Don't drink alcohol at all", "Drink some milk before drinking alcohol", "Eat hot food with your alcoholic drinks"], "answer": 1},
+"478": {"options": ["Drink a cup of coffee and drive home", "Drive home carefully and slowly", "Take public transport home", "Wait a while before driving home"], "answer": 2},
+"479": {"options": ["Drugs", "Fatigue", "Loud music", "All of the above"], "answer": 3},
+"480": {"options": ["The driver can open the door at any time", "No, if you see the door opening, you must stop the oncoming vehicle", "No, there is no restriction on opening the vehicle door", "Yes, you should not open the door of your vehicle if you are likely to cause danger to road users or obstruct traffic"], "answer": 3},
+"482": {"options": ["A first aid kit", "A road atlas", "Flammable material", "Tool kit"], "answer": 2},
+"483": {"multi": [
+ {"q": "Which of the following is true?", "options": ["Pedestrians have the right of way at all pedestrian crossings", "Pedestrians do not have the right of way to cross the road", "Pedestrians must give way to vehicles", "Pedestrians must move slowly at road crossings"], "answer": 0},
+ {"q": "Which of the following statements is true?", "options": ["You must not honk in quiet areas", "You must not use a multi-tone horn", "Do not drive a vehicle making unnecessary noise", "All of the above"], "answer": 3}
+]},
+"484": {"options": ["On a trailer", "On the body of the vehicle", "For hire or reward", "Passengers may not be carried"], "answer": 3},
+"485": {"options": ["Driving License", "Registration Certificate", "Invoice", "Insurance Certificate"], "answer": 2},
+"486": {"options": ["Uniformed Police Department Officials", "Uniformed Transport Department Officials", "Any other authorised Government official", "All of the above"], "answer": 3},
+"487": {"options": ["Bringing the gear to neutral", "Switching off the engine", "Lowering the gears one by one", "Pressing the clutch and brake at the same time"], "answer": 2},
+"488": {"options": ["Loud music", "Arguing with a passenger", "Using a mobile phone", "All of the above"], "answer": 3},
+"489": {"options": ["Find a safe place to park your vehicle off the road and allow fresh air to enter your vehicle", "Look at the surrounding landscape and enjoy the beauty", "Drive fast to complete your journey quickly", "Park the vehicle on the shoulder of the road for rest"], "answer": 0},
+"490": {"multi": [
+ {"q": "Which of these is required by law to maintain a vehicle in good condition?", "options": ["Headlights", "Windscreen", "Seat belts", "All of the above"], "answer": 3},
+ {"q": "You are carrying two 13-year-old children and their parents in a car. Who is responsible if you see that the children are not wearing seat belts?", "options": ["The children's parents", "You, the driver of the vehicle", "The passenger", "The children"], "answer": 1}
+]},
+"491": {"options": ["Mental health problems", "Impaired concentration", "Loss of hearing", "All of the above"], "answer": 3},
+"492": {"options": ["Try not to react", "Let them know how you feel", "Flash your headlights several times", "Honk your horn"], "answer": 0},
+"493": {"options": ["Honk your horn to alert them to your presence", "Be patient and be prepared for their slow reaction", "Flash your headlights to indicate it is safe for them to proceed", "Pass them as quickly as possible"], "answer": 1},
+"494": {"options": ["To show that you are giving way", "To show that you are going to turn around", "To let others know that you have priority", "To make your presence known"], "answer": 3},
+"496": {"options": ["Will use more fuel", "Your vehicle will speed up and you will lose control", "Will cause the engine to overheat and be damaged", "Tire wear increases"], "answer": 1},
+"497": {"options": ["To increase", "To decrease", "To increase up to tenfold", "To continue as before"], "answer": 0},
+"498": {"options": ["Third party, fire, and theft should be covered", "Fully protected", "Third party only", "Personal injury coverage"], "answer": 2},
+"499": {"multi": [
+ {"q": "You have purchased a second-hand vehicle. When should you notify the registry to change ownership?", "options": ["Within 14 days", "Within 28 days", "Within a month", "Only when you can insure it"], "answer": 0},
+ {"q": "Which of these should you do if you are the first to arrive at the scene of an accident?", "options": ["Switch off the vehicle engine", "Remove injured people from vehicles", "Call emergency services", "All of the above"], "answer": 3}
+]},
+"500": {"options": ["Use an indicator along with a hand signal", "Place your indicator early", "Step on the brake several times to show the stop lights", "Turn as fast as you can"], "answer": 0},
+"502": {"options": ["Speed up to avoid hitting pedestrians at a pedestrian crossing", "Slow down", "Stop and give priority to pedestrians at pedestrian crossings", "Speed up and be mindful of pedestrians already at the crosswalk"], "answer": 2},
+"503": {"options": ["Slow down or stop if necessary", "Move the vehicle to the left side of the road, slow down, and turn your headlights to low beam", "Dim your headlights continuously", "Increase the speed of the vehicle"], "answer": 1},
+"504": {"multi": [
+ {"q": "A cover note is a document that you are given before receiving…", "options": ["Driving license", "Registration certificate", "Insurance certificate", "PUCC certificate"], "answer": 2},
+ {"q": "What should you do if you see a fire in your vehicle?", "options": ["Immediately move the vehicle to the side of the road, turn off the engine and all electrical switches, get all passengers out, and try to extinguish the fire with sand or a thick cloth", "Immediately move the vehicle to the side of the road, turn off the engine, and douse the fire with water on all electrical switches and burning wires", "Do nothing but call the fire department", "Leave the vehicle on the road until the fire department arrives"], "answer": 0}
+]},
+"505": {"multi": [
+ {"q": "Why should you not drive with your foot on the clutch for longer than necessary?", "options": ["Reduces vehicle control", "Clutch wear occurs", "Fuel consumption increases", "All of the above"], "answer": 3},
+ {"q": "What is the function of the choke in a vehicle?", "options": ["Enrich the fuel in the air-fuel mixture", "Enrich air in the air-fuel mixture", "Avoid the presence of water in the air-fuel mixture", "Increase air pressure"], "answer": 0}
+]},
+"508": {"options": ["Safe", "Easy to unload", "Does not cause damage", "Does not damage the vehicle"], "answer": 0},
+"509": {"options": ["Disabled person", "Deaf", "Elderly", "Blind"], "answer": 3},
+"511": {"options": ["Because trailers are longer than cars", "Trailers may suddenly increase speed", "Trailer brakes aren't that great", "Trailers climb hills more slowly"], "answer": 0},
+"512": {"options": ["Check that the registration number is visible", "Make sure the tire pressure is correct", "Check fuel, coolant or oil leaks", "All of the above"], "answer": 3},
+"513": {"options": ["Incorrect operation of all lights and indicators", "Seat belt not used", "Both of the above", "None of the above"], "answer": 2},
+"514": {"options": ["Road conditions and weather", "Vehicle type and traffic conditions", "Your own ability", "All of the above"], "answer": 3},
+"515": {"options": ["Give a hand signal", "Slow down your vehicle", "Use headlights", "Increase your speed"], "answer": 3},
+"516": {"options": ["Passengers", "Loader", "Driver of the vehicle", "None of the above"], "answer": 2},
+"517": {"options": ["Cyclists", "Pedestrians", "Two-wheeler passengers", "All of the above"], "answer": 3},
+"518": {"options": ["Drive the vehicle to the side of the road", "Gently accelerate the vehicle", "Brake hard to slow down", "Stop accelerating the vehicle"], "answer": 3},
+"520": {"multi": [
+ {"q": "Why should you keep a good distance from the vehicle in front of you when you are driving in fog?", "options": ["To avoid accidents in the event of sudden changes in direction", "To avoid accidents without fog lights", "To avoid accidents in the event of a sudden stop", "In case the brake lights are on"], "answer": 2},
+ {"q": "What harm does air pollution cause?", "options": ["For humans", "For plants", "For animals", "All of the above"], "answer": 3}
+]},
+"521": {"options": ["The vehicle will pull to the right", "The vehicle will pull to the left", "There will be vibration in the steering wheel", "All of the above"], "answer": 2},
+"522": {"options": ["While teaching driving", "Never, at any time", "For an unlicensed person to claim insurance", "If he knows that person well"], "answer": 1},
+"526": {"options": ["No fault, as only the borrower is responsible", "Serious crime", "It is only a crime if the vehicle is involved in an accident", "None of the above"], "answer": 1},
+"527": {"options": ["Only allowed in emergencies", "It is a crime", "Liable to a strict warning from the authorities", "Drive the vehicle slowly"], "answer": 1},
+"530": {"options": ["Reduced alertness", "Affects concentration", "Impaired decision making", "All of the above"], "answer": 3},
+"531": {"options": ["There is no difference in stopping distance", "Stopping distance decreases as speed increases", "The higher the speed, the longer the stopping distance", "None of the above"], "answer": 2},
+"532": {"options": ["The gear must be in neutral", "The parking brake must be on", "The clutch pedal must be pressed", "All of the above"], "answer": 3},
+"533": {"multi": [
+ {"q": "Speeding…", "options": ["Gives you the best fuel average", "Leaves you without enough time to respond and can cause accidents", "Makes your journey take more time", "Reduces damage to your engine"], "answer": 1},
+ {"q": "Basic rules for driving on highways:", "options": ["Use a less trafficked route", "Drive in the left lane unless overtaking", "Cross on the clearest side", "Keep the speed limit to 50 km/h to avoid congestion"], "answer": 1}
+]},
+"534": {"options": ["Poor maintenance", "Excessive weight of vehicles", "Frequent traffic", "All of the above"], "answer": 3},
+"535": {"options": ["Vehicle speed", "Condition of the vehicle's tires", "Weather", "All of the above"], "answer": 3},
+"536": {"options": ["Use public transportation more for travel", "Avoid unnecessary trips", "Walk or cycle for short journeys", "All of the above"], "answer": 3},
+"537": {"options": ["Service your vehicle properly", "Fill vehicle tires with the correct amount of air", "Don't drive excessively in low gears", "All of the above"], "answer": 3},
+"538": {"options": ["Low insurance premiums", "Your road tax refund", "Excellent fuel efficiency and clean exhaust emissions", "None of the above"], "answer": 2},
+"540": {"multi": [
+ {"q": "Be careful when overtaking a driving instruction vehicle with the 'L' mark because…", "options": ["Their intention is to always drive in the left lane", "This will reduce their confidence", "They may panic and it may lead to danger", "They are generally not healthy"], "answer": 2},
+ {"q": "What should you do when you approach a bus that is about to leave from a bus stop with a signal?", "options": ["Pass by before it moves", "Let the bus pass if it is safe", "Flash your headlights as you approach", "All of the above"], "answer": 1}
+]},
+"542": {"options": ["Continue driving without slowing down", "Slow down and be careful", "Stop and let pedestrians pass", "Honk"], "answer": 2},
+"543": {"options": ["Drive to another intersection without a traffic light", "Wait for the \"U\" turn until the traffic light turns green", "If there is a policeman at the intersection, you can make a \"U\" turn", "Avoid making \"U\" turns"], "answer": 1},
+"544": {"options": ["Always before entering an intersection", "Only when it's busy", "Only when you approach a stop sign", "When you are on a highway"], "answer": 0},
+"546": {"options": ["Try to overtake the vehicle as quickly as possible", "Immediately apply the brakes and stop the vehicle", "Flash your headlights and speed up", "Check your mirrors and move back behind the car"], "answer": 3},
+"549": {"multi": [
+ {"q": "What should you do if you are approaching a pedestrian crossing controlled by a traffic signal and the signal has turned green for you but pedestrians are still crossing?", "options": ["Slow down and give way to pedestrians", "Speed up because the signal is in your favor", "Speed up but watch out for pedestrians", "Flash your headlights to warn them and stop"], "answer": 0},
+ {"q": "What does the flashing red light at an intersection mean?", "options": ["You should slow down and drive more carefully", "You must slow down and give way to vehicles coming from the left or right", "The signal light is not working, so you must proceed with caution", "Vehicles must stop and give way to vehicles in priority order; proceed only if there are no obstacles on the way"], "answer": 3}
+]},
+"553": {"multi": [
+ {"q": "What precaution should be taken when entering an intersection with a flashing amber traffic light?", "options": ["Slow down and proceed with caution", "Stop safely if possible", "Keep going at the same pace", "Rush through the signal"], "answer": 0},
+ {"q": "What should you do before your vehicle turns onto the road?", "options": ["Check around for other road users", "Use another route if possible", "Place your hand on the handbrake", "Turn on your headlights"], "answer": 0}
+]},
+"554": {"options": ["Honk", "Use mirrors", "Select a higher gear", "Flash your headlights"], "answer": 1},
+"555": {"options": ["Look around before you go", "Check all the mirrors in the vehicle", "Give a signal", "All of the above"], "answer": 3},
+"558": {"options": ["Near a school entrance", "Near a police station", "On a side road", "All of the above"], "answer": 3},
+"559": {"options": ["On a busy road", "On a one-way road", "In a roundabout", "All of the above"], "answer": 3},
+"565": {"options": ["Overtake all vehicles and stop in front of them", "Pass through all vehicles standing in two lines", "Stop behind the last vehicle in the appropriate lane", "Stop anywhere"], "answer": 2},
+"567": {"multi": [
+ {"q": "What is the most important thing to pay attention to when driving in an area with a lot of pedestrians (for example, a bus stop)?", "options": ["Honk your horn repeatedly", "Put your headlights on high beam so they can see you better", "Increase your speed to get past them quickly", "Slow down and check whether they are entering the road before proceeding"], "answer": 3},
+ {"q": "What should you do if a vehicle in front of you stops at a pedestrian crossing?", "options": ["Do not overtake the vehicle", "You can overtake the vehicle if there are no pedestrians at the crossing", "If no other vehicles are coming, you can overtake the vehicle", "Honk repeatedly"], "answer": 0},
+ {"q": "If you want to turn onto the road on the left, you should drive…", "options": ["As close to the left side of the road as possible", "As close to the right side of the road as possible", "In the middle of the road to make it easier to turn", "On the right or left side of the road, as per convenience"], "answer": 0}
+]},
+"568": {"options": ["With the right signal indicator", "Close to the centre of the road you are traveling on", "Get as close to the left side of the road as you enter", "All of the above"], "answer": 3},
+"572": {"options": ["Near the traffic light", "Near the crossing", "On a busy main road", "None of these"], "answer": 3}
+}

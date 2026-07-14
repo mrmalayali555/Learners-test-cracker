@@ -1,0 +1,115 @@
+{
+"662": {"options": ["Fire trucks", "Goods vehicles", "School bus", "Ambulance"], "answer": 2},
+"663": {"options": ["The object marking is upside down", "The downward slope of the bar marking should be towards the carriageway", "The object marking should be black and white", "No error"], "answer": 1},
+"673": {"options": ["Autorickshaw", "Two-wheelers", "Goods vehicles", "Ambulance"], "answer": 0},
+"679": {"multi": [
+ {"q": "In an emergency situation such as saving human life or preventing crime, the driver of an emergency vehicle with a multi-tone horn and multi-colour flasher lights operating, with extreme care and caution, may do which of the following? (i) Run a red traffic light (ii) Exceed the posted speed limit (iii) Drive on a highway hard shoulder (iv) Disobey \"No entry\"", "options": ["Only (i) is correct", "Only (i) and (ii) are correct", "Only (ii), (iii) and (iv) are correct", "All four are correct"], "answer": 3},
+ {"q": "In urban areas where the speed limit is set at forty kilometres per hour, under what conditions are motorcyclists allowed to filter through and pass three- or four-wheeled vehicles?", "options": ["When the speed of the motorcycle is above fifty kilometres per hour", "If the road signs specifically allow and the speed difference does not exceed fifteen kilometres per hour", "Whenever the motorcyclist wants to overtake", "Only during rush hours"], "answer": 1}
+]},
+"680": {"q": "Which of the following should be observed when a heavy vehicle or a speed-controlled vehicle is moving on a road with several lanes in one direction? (i) Always drive in the left lane (ii) Use only the left lane to overtake other vehicles (iii) Always use the right lane (iv) The other lane may be used when overtaking an obstacle or a slow-moving vehicle", "options": ["(i) only is correct", "(i) and (ii) only are correct", "(i) and (iv) only are correct", "All four are correct"], "answer": 2},
+"682": {"q": "No driver shall pull, push or drive a vehicle against the direction of normal traffic… (i) Except when specifically directed to do so by a traffic sign erected by an appropriate authority (ii) Except when specifically directed to do so by a uniformed police officer on duty (iii) In any case", "options": ["(i) only is correct", "(ii) only is correct", "(i) and (ii) only are correct", "All three statements are true"], "answer": 2},
+"683": {"multi": [
+ {"q": "Which of the following is correct when reversing a vehicle? (1) The driver must maintain a safe distance from the vehicle moving behind him (2) The driver of the other vehicle must not move towards him before the reversing vehicle completes its movement", "options": ["Only statement 1 is correct", "Only statement 2 is correct", "All other vehicles must stop", "Statements 1 and 2 are correct"], "answer": 3},
+ {"q": "Which of the following are the duties of a driver? (i) Every driver must always drive the vehicle with due care and caution (ii) While driving, the driver must ensure that he is physically and mentally fit to drive the vehicle (iii) The driver must not use any GPS device (iv) The driver should remain alert and focused on the road and traffic and avoid any activity that distracts him", "options": ["Only (i) and (ii) are correct", "Only (i), (ii) and (iv) are correct", "Only (i), (ii) and (iii) are correct", "All four are correct"], "answer": 1}
+]},
+"688": {"q": "The driver and riders should take special care and precautions while driving to ensure the safety of the most vulnerable road users: (i) Pedestrians and cyclists (ii) Children (iii) Elderly and differently abled (iv) Women", "options": ["Only (i) and (ii) are correct", "Only (i), (ii), and (iv) are correct", "Only (i), (ii), and (iii) are correct", "All four are correct"], "answer": 2},
+"689": {"multi": [
+ {"q": "Which of the following statements is false?", "options": ["The driver must ensure that no loud music is played in the vehicle", "The driver must not watch digital motion pictures or videos while driving", "The driver must not watch digital motion pictures or videos while driving except where necessary for route navigation, used in a manner that does not distract from driving", "The driver must not watch digital motion pictures or videos, including route navigation, unless the vehicle is stationary"], "answer": 3},
+ {"q": "When entering or exiting a vehicle, the driver must ensure… (i) His own safety (ii) Safety of other employees (iii) Safety of passengers (iv) Safety of other road users", "options": ["Only (i) and (ii) are correct", "Only (ii), (iii), and (iv) are correct", "Only (i), (ii), and (iii) are correct", "All four are correct"], "answer": 3},
+ {"q": "If a technical fault is detected while driving a vehicle, the driver should", "options": ["Stop the vehicle as soon as possible", "Move the vehicle off the road", "Report to a service station", "Report to the police"], "answer": 1},
+ {"q": "What is prohibited for a motorcycle or three-wheeler driver or rider while riding on a road?", "options": ["Riding a vehicle with a passenger", "Holding or pushing another vehicle", "Wearing a helmet", "Using turn signals"], "answer": 1},
+ {"q": "What is required of a motorcycle rider and passenger regarding helmets?", "options": ["Where required by law, they must wear protective headgear or other specified safety equipment", "Experienced riders may decide whether to wear a helmet", "Only the rider is required to wear a helmet; passengers are exempt", "A helmet is optional as long as the motorcycle has a sidecar"], "answer": 0},
+ {"q": "When is the rider allowed to take his feet off the pedals or footrests?", "options": ["They can do so whenever they feel like it", "Only when road conditions require or allow it safely", "When driving in a designated parking area", "When using cruise control"], "answer": 1}
+]},
+"691": {"options": ["Valid for 20 years", "Up to 40 years of age", "Up to 50 years of age", "Valid for 10 years"], "answer": 1},
+"692": {"q": "Which of the following offences can disqualify a person from holding a driving licence by a licensing authority? (i) Smoking while driving a public transport vehicle (ii) Failure to comply with the provisions of section 134 (iii) Carrying excessive load in goods vehicles (iv) Failure to stop after being signalled to do so by any person in authority", "options": ["Only (i) and (ii) are correct", "Only (ii) and (iii) are correct", "Only (i), (ii) and (iii) are correct", "All four are correct"], "answer": 3},
+"697": {"options": ["If you are emotionally distracted, you cannot concentrate on driving", "If your attention is not on the road, it will be too late to react and avoid accidents", "If you drive emotionally, you may drive more dangerously", "All are correct"], "answer": 3},
+"698": {"multi": [
+ {"q": "Choose the wrong sentence:", "options": ["Passengers are not allowed in the back seat of the vehicle", "Passenger vehicles are allowed to carry passengers", "Passengers are not allowed in the cargo area of a truck", "Passengers are not allowed in the trunk or outside of a car"], "answer": 0},
+ {"q": "What is the misconception about seat belts?", "options": ["Seat belts can save the lives of passengers in the event of an accident", "Only the driver should wear a seat belt", "If passengers in the back seat do not wear a seat belt, they put themselves and other passengers at risk in the event of an accident", "Seat belts must be fastened securely to provide maximum protection"], "answer": 1}
+]},
+"699": {"options": ["The area that cannot be seen when a vehicle is moving in front", "The area behind your head", "The area that cannot be seen in the inside and outside rear-view mirrors", "All are correct"], "answer": 2},
+"700": {"multi": [
+ {"q": "Which vehicle is in the blind spot of the red car?", "options": ["The blue truck is in the red car's blind spot", "The white car is in the red car's blind spot", "The blue truck is in the white car's blind spot", "The red car is in the white car's blind spot"], "answer": 1},
+ {"q": "When is this dangerous?", "options": ["When the driver of the red car changes lanes to the left", "When the truck driver changes lanes to the middle", "When the driver of the red car changes lanes to the right", "When the driver of the white car changes lanes to the middle"], "answer": 0}
+]},
+"702": {"options": ["When the vehicle in front of you passes another vehicle, you start counting seconds and keep counting until you reach that vehicle", "When the vehicle in front of you passes another vehicle, you start counting minutes and keep counting until you reach that vehicle", "When the vehicle in front of you passes a sign post, you start counting seconds and keep counting until you reach that sign", "You start counting seconds as you pass a sign and keep counting until you can no longer see the sign in your mirror"], "answer": 2},
+"703": {"options": ["In slippery road conditions, braking distance increases", "On slippery roads, the vehicle is more likely to skid", "On slippery roads, cornering is more dangerous", "In slippery road conditions, the engine can overheat significantly"], "answer": 3},
+"704": {"options": ["Checking the fuel level", "Assessing the condition of the road ahead", "Adjusting the vehicle controls for a smooth ride", "Checking all control devices"], "answer": 1},
+"705": {"options": ["Get out of the car, look around, and drive quickly", "Honk your horn continuously", "Check your mirrors and watch for vehicles on the road before pulling away", "All are correct"], "answer": 2},
+"706": {"options": ["No, because the car is in the right lane", "No, because the road ahead is clear", "Yes, because it is daytime", "Yes, because crossing this line is not allowed at this location"], "answer": 3},
+"707": {"options": ["The driver may proceed without stopping", "The driver must stop before the STOP sign", "The driver must give way to traffic on the main road", "The driver must slow down, but not stop"], "answer": 1},
+"709": {"options": ["A vehicle may enter the road without looking at anything else if the road is clear", "A vehicle must always yield to pedestrians", "A vehicle must yield to motor vehicles and other traffic already on the road", "The vehicle must stop at the property line and then proceed"], "answer": 2},
+"710": {"options": ["The markings are incorrectly placed", "The two-way object marking is not applicable here", "Object marking is for one side only", "All of the above are correct"], "answer": 3},
+"713": {"options": ["Vehicle X should let Y and Z go", "Vehicle Z should let X and Y go", "Vehicle Y should let X and Z go", "Vehicles Y and Z should let X go"], "answer": 0},
+"714": {"options": ["Vehicle Y should give way to X", "Vehicle X should give way to Y", "Both vehicles have the right of way", "Neither vehicle has the right of way"], "answer": 0},
+"715": {"options": ["Goods vehicle", "Auto rickshaw", "Both the auto rickshaw and the goods vehicle", "Both vehicles are parked correctly"], "answer": 1},
+"716": {"q": "A vehicle shall not make a 'U' turn: (i) Where a road sign or traffic signal prohibits such a 'U' turn (ii) On a busy road with continuous traffic (iii) On a major road, highway or expressway (iv) On a continuous single or double solid line", "options": ["(i) only is correct", "Only (i) and (ii) are correct", "Only (ii) and (iv) are correct", "All four are correct"], "answer": 3},
+"719": {"options": ["Check your mirrors to assess the traffic around you", "Signal your intention to change direction", "Adjust the position of your vehicle", "Accelerate to make a sharp turn"], "answer": 0},
+"721": {"multi": [
+ {"q": "What should you do after checking your mirrors and signalling before making an action?", "options": ["Change the direction of the steering wheel without looking again", "Assess the situation and make sure it is safe to complete the action", "Increase speed to make the turn faster", "Proceed without paying attention to pedestrians or cyclists in the area"], "answer": 1},
+ {"q": "According to the MSM PSL principle, what is the correct sequence of actions before changing direction?", "options": ["Signal, position, speed, look, manoeuvre", "Look, signal, position, speed, mirror, manoeuvre", "Mirror, signal, position, speed, look, manoeuvre", "Position, speed, look, mirror, signal, manoeuvre"], "answer": 2}
+]},
+"722": {"options": ["Adjust your lane position as needed to make the turn", "Increase your speed to indicate your willingness to change direction", "Check your mirrors again to see oncoming vehicles", "Indicate your intention to change direction"], "answer": 0},
+"725": {"options": ["You turn your body to look behind you before opening the door and do not open the door too far", "You use your left hand instead of your right hand", "You can open the door more quickly", "You can check your mirrors before opening the door"], "answer": 0},
+"726": {"multi": [
+ {"q": "Which of the following is correct when driving on a four-lane highway? (i) After driving on the left and giving the necessary signal, turn carefully to the right when you reach the place where you need to turn (ii) After giving the necessary signal, move into the rightmost lane in the direction of travel and turn carefully to the right when you reach the place where you need to turn (iii) A vehicle moving in the right lane after giving the signal to turn right should not overtake another vehicle on the left side until it turns right", "options": ["Only (i) is correct", "Only (ii) is correct", "Only (i) and (ii) are correct", "Only (i), (ii) and (iii) are correct"], "answer": 1},
+ {"q": "How can you reduce braking distance?", "options": ["Slow down, increase caution, put your foot on the brake pedal and brake lightly while driving", "Increase your speed, increase your caution, be ready to brake with your foot on the brake pedal without pressing", "Reduce your speed, increase your caution, be ready to brake with your foot over the brake pedal without pressing", "Reduce your speed, check your tires, be ready to brake"], "answer": 2}
+]},
+"727": {"options": ["Angular parking", "Zigzag parking", "Parallel parking", "Perpendicular parking"], "answer": 3},
+"728": {"options": ["Angular parking", "Reverse parking", "Parallel parking", "Perpendicular parking"], "answer": 2},
+"729": {"options": ["Angular parking", "Reverse parking", "Parallel parking", "Perpendicular parking"], "answer": 0},
+"730": {"q": "What safety measures should a motorcycle driver ensure when carrying a child between the ages of nine months and four years on the back? (i) Safety harness (ii) Crash helmet (iii) Child restraint system (iv) Do not exceed 40 km/h", "options": ["Only (i) and (ii) are correct", "(i), (ii), (iv) only", "(i), (ii), (iii) only", "All four are correct"], "answer": 1},
+"731": {"multi": [
+ {"q": "When the ownership of a motor vehicle is transferred within the same state, the transferor shall inform the authority within … days", "options": ["14 days", "30 days", "45 days", "90 days"], "answer": 0},
+ {"q": "Bharat Stage-VI emission standard was implemented across the country from…", "options": ["1st April 2020", "1st October 2020", "1st April 2021", "1st October 2021"], "answer": 0}
+]},
+"734": {"options": ["Twenty-five years", "Thirty years", "Fifty years", "One hundred years"], "answer": 2},
+"736": {"multi": [
+ {"q": "The purpose of setting up the Motor Vehicle Accident Fund is…", "options": ["For third party insurance of all vehicles across the country", "For all road users in India", "For road safety activities", "For innovation in motor vehicle technology"], "answer": 1},
+ {"q": "No application for compensation shall be entertained after how long from the occurrence of an accident?", "options": ["Six months", "One month", "Three months", "Twelve months"], "answer": 0}
+]},
+"737": {"multi": [
+ {"q": "No appeal shall lie against the amount awarded by a Claims Tribunal if the amount in dispute is less than Rs.", "options": ["Ten thousand", "Fifty thousand", "One lakh", "Two lakhs"], "answer": 2},
+ {"q": "Which of the following documents is not mandatory for the driver of a transport vehicle to carry at all times?", "options": ["Driving licence", "Tax certificate", "Employee ID", "Pollution control certificate"], "answer": 2}
+]},
+"738": {"options": ["Fitness certificate", "Insurance certificate", "Documents specified in rules 132 and 133", "Driving licence"], "answer": 2},
+"739": {"options": ["Driving License and Pollution Control Certificate", "Tax Certificate and Registration Certificate", "Insurance Certificate and Pollution Control Certificate", "Fitness Certificate and Driving License"], "answer": 0},
+"744": {"multi": [
+ {"q": "What is the primary responsibility of the driver regarding the load on the vehicle?", "options": ["Ensure that the loads are neatly arranged", "Ensure that the loads are secured and arranged so that they do not slip or fall", "Adjust the load to carry the maximum", "Load so that it can be easily lifted"], "answer": 1},
+ {"q": "What should a driver avoid when loading a vehicle?", "options": ["Loading only light goods", "Any part of the load protruding outside the vehicle", "Driving only in a straight line", "Carrying only the desired cargo"], "answer": 1}
+]},
+"747": {"options": ["10 kilometres per hour", "15 kilometres per hour", "20 kilometres per hour", "25 kilometres per hour"], "answer": 1},
+"748": {"multi": [
+ {"q": "Which of the following is not allowed to be carried in a public service vehicle?", "options": ["Fuel required for the vehicle", "Lubricants required for operation", "Fire-inducing objects", "Essential medicines"], "answer": 2},
+ {"q": "In urban areas, motorcyclists are allowed to filter (pass) between which other vehicles?", "options": ["Only between motorcycles", "Only between bicycles and pedestrians", "Between three- and four-wheeled vehicles", "Between any type of vehicle"], "answer": 2}
+]},
+"752": {"options": ["Driver only", "Other passengers may be carried if they can sit", "Up to five people", "As specified in the vehicle's registration certificate"], "answer": 3},
+"755": {"multi": [
+ {"q": "What must be primarily visible to other road users when towing a vehicle?", "options": ["Name and model of the towing vehicle", "Rope or chain used for towing", "Driving license", "Registration number"], "answer": 1},
+ {"q": "What signs must be displayed on the towing vehicle and the towed vehicle?", "options": ["\"Towing\" sign", "\"Caution\" sign", "\"Slow\" sign", "\"On Tow\" sign"], "answer": 3}
+]},
+"756": {"options": ["Hazard warning lights for both vehicles", "Only if the towing vehicle has lights", "If the towing vehicle is equipped with a spot light", "Towing is never allowed at night or in inclement weather"], "answer": 0},
+"757": {"options": ["Shout at the other driver", "Avoid the situation", "Drive away", "Remain completely calm"], "answer": 3},
+"759": {"options": ["Call the police if someone is injured", "Take pictures of the accident scene", "Install reflective warning triangles", "Argue with the other driver"], "answer": 3},
+"762": {"multi": [
+ {"q": "What information should a driver collect from the other driver after an accident?", "options": ["The other driver's vehicle model and year", "The other driver's registration certificate", "The other driver's driving record", "The other driver's name, address, contact details, licence and insurance details"], "answer": 3},
+ {"q": "What should you do if you can't reach an amicable settlement after a road accident?", "options": ["Leave the scene quietly", "Call the police immediately", "Exchange phone numbers with the other driver", "Wait until the other driver has left"], "answer": 1}
+]},
+"763": {"options": ["Turn on the hazard warning lights", "Call for a tow truck", "Move the vehicle to a safe location", "Contact the insurance company"], "answer": 0},
+"769": {"multi": [
+ {"q": "Which is correct regarding parking in front of the entrance or exit of a property?", "options": ["It is prohibited, as it causes inconvenience", "It is permissible if the vehicle is a bus", "It is permissible at certain times", "It is prohibited only if there is a prohibition sign"], "answer": 0},
+ {"q": "Which of the following is an offence that can lead to disqualification of the license?", "options": ["Driving below the speed limit", "Theft of a motor vehicle", "Parking in a designated place", "Turning the vehicle without using turn signals"], "answer": 1}
+]},
+"770": {"options": ["Carrying more than one passenger in a private vehicle", "Offering discounts to passengers", "Driving a vehicle with a broken mirror", "Allowing passengers to sit in the driver's cabin beyond its capacity"], "answer": 3},
+"771": {"options": ["Listening to music at a low volume", "Engaging in conversation with passengers", "Texting or using a mobile phone", "Adjusting the vehicle's mirrors"], "answer": 2},
+"775": {"options": ["His name and address and the name and address of the vehicle owner", "Registration number of the vehicle only", "Details of the insurance policy", "Make and model of the vehicle"], "answer": 0},
+"776": {"options": ["Driving on a road at night", "Providing trade or other services on the road", "Carrying passengers in their vehicle", "Changing lanes without signalling"], "answer": 1},
+"777": {"options": ["Parking their vehicle on the roadside", "Displaying advertisements on their vehicle", "Using a mobile phone while driving", "Honking their horn"], "answer": 1},
+"778": {"multi": [
+ {"q": "What is the primary condition that a vehicle must comply with before overtaking another vehicle?", "options": ["The vehicle must be faster than the one being overtaken", "The driver must signal using their right turn indicator", "It must be safe and must not violate any law", "Overtaking can be done at any time if the road is clear"], "answer": 2},
+ {"q": "Under what circumstances is it permissible to overtake a vehicle from the left?", "options": ["When the vehicle in third gear is traveling slower than the speed limit", "If the driver deems it necessary", "When there are no other vehicles on the road", "When the vehicle being overtaken is stationary and it is safe to do so"], "answer": 3},
+ {"q": "Under which of the following circumstances is overtaking not permitted?", "options": ["On a multi-lane road in a marked lane", "At a junction", "Overtaking a vehicle signalling a right turn", "Overtaking a stationary vehicle when it is safe to do so"], "answer": 1},
+ {"q": "What should the driver of the vehicle being overtaken not do while being overtaken?", "options": ["Accelerate or obstruct the overtaking vehicle", "Maintain a constant speed", "Indicate their intention to turn", "Use indicators"], "answer": 0}
+]}
+}

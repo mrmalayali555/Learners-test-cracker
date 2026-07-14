@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>RTO Practice Portal</title>
+<meta name="description" content="Practice for your Kerala learner's licence test with a modern quiz experience, realistic mock tests, and instant feedback."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="app.css"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%23245fa6'/><text x='50' y='66' font-size='48' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'>R</text></svg>"/>
+</head>
+<body>
+
+<!-- ============ WELCOME / LOGIN ============ -->
+<section id="view-welcome" class="view">
+  <div class="welcome-split">
+    <div class="welcome-hero">
+      <div class="hero-badge">🚗 RTO PRACTICE</div>
+      <img class="hero-logo" src="/logo.png" alt="RTO Practice logo" />
+      <h1>Master the Road with Confidence</h1>
+      <p>Study with a polished quiz experience, realistic mock tests, and instant feedback designed for learner's licence prep.</p>
+      <div class="hero-stats">
+        <div class="hero-stat"><strong>800+</strong><span>Questions</span></div>
+        <div class="hero-stat"><strong>15</strong><span>Practice Sessions</span></div>
+        <div class="hero-stat"><strong>95%</strong><span>Confidence Boost</span></div>
+      </div>
+    </div>
+    <div class="welcome-form">
+      <div class="auth-card">
+        <div class="auth-tabs">
+          <button class="auth-tab active" type="button" data-auth-tab="signup">Sign Up</button>
+          <button class="auth-tab" type="button" data-auth-tab="login">Log In</button>
+        </div>
+        <div id="auth-message" class="auth-message hidden"></div>
+
+        <form id="signup-form" class="auth-form">
+          <label class="field-label" for="student-name">FULL NAME</label>
+          <input id="student-name" type="text" placeholder="e.g. Anjali" maxlength="30" autocomplete="name"/>
+
+          <label class="field-label" for="signup-email">EMAIL</label>
+          <input id="signup-email" type="email" placeholder="you@example.com" autocomplete="email"/>
+
+          <label class="field-label" for="signup-password">PASSWORD</label>
+          <div class="password-wrapper">
+            <input id="signup-password" type="password" placeholder="Create a strong password" autocomplete="new-password"/>
+            <button type="button" class="toggle-password" data-target="signup-password">👁</button>
+          </div>
+
+          <div class="strength-wrap">
+            <div class="strength-bar"><i id="strength-fill"></i></div>
+            <div id="strength-text" class="strength-text">Enter a password</div>
+          </div>
+
+
+          <label class="field-label" for="signup-confirm">CONFIRM PASSWORD</label>
+          <div class="password-wrapper">
+            <input id="signup-confirm" type="password" placeholder="Repeat your password" autocomplete="new-password"/>
+            <button type="button" class="toggle-password" data-target="signup-confirm">👁</button>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="btn-signup" type="submit">Create account</button>
+          <div id="verification-actions" class="verification-actions hidden">
+            <button type="button" class="link-btn" id="btn-resend-verification-inline">Resend verification email</button>
+          </div>
+        </form>
+
+        <form id="login-form" class="auth-form hidden">
+          <label class="field-label" for="login-email">EMAIL</label>
+          <input id="login-email" type="email" placeholder="you@example.com" autocomplete="email"/>
+
+          <label class="field-label" for="login-password">PASSWORD</label>
+          <div class="password-wrapper">
+            <input id="login-password" type="password" placeholder="Enter your password" autocomplete="current-password"/>
+            <button type="button" class="toggle-password" data-target="login-password">👁</button>
+          </div>
+
+          <div class="form-inline">
+            <button type="button" class="text-link" id="forgot-password-link">Forgot password?</button>
+          </div>
+
+          <button class="btn btn-primary btn-block" id="btn-login" type="submit">Log in</button>
+        </form>
+
+        <div id="reset-panel" class="reset-panel hidden">
+          <label class="field-label" for="reset-email">RESET EMAIL</label>
+          <input id="reset-email" type="email" placeholder="you@example.com" autocomplete="email"/>
+          <div class="reset-actions">
+            <button class="btn btn-primary" id="btn-reset-password" type="button">Send reset link</button>
+            <button class="btn btn-ghost" id="btn-cancel-reset" type="button">Cancel</button>
+          </div>
+        </div>
+
+        <button class="btn btn-google btn-block" id="btn-google-signin" type="button"><span class="google-mark">G</span> Continue with Google</button>
+        <button class="btn btn-ghost btn-block" id="btn-guest">Continue as guest</button>
+        <p class="fine-print">Progress is stored only in this browser unless you choose Google sign-in or email sign-up.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMAIL VERIFICATION ============ -->
+<section id="view-verification" class="view page hidden">
+  <div class="page-head">
+    <h2>Email verification</h2>
+    <p class="muted">Please verify your email to continue. We'll check automatically until it's verified.</p>
+  </div>
+  <div class="card" style="text-align:center">
+    <img src="/logo.png" alt="logo" style="width:64px;height:64px;margin:0 auto 12px;border-radius:12px;object-fit:contain"/>
+    <p style="font-weight:700">Verification email sent to <span id="verify-email">you@example.com</span></p>
+    <div style="display:flex;gap:10px;margin-top:12px;justify-content:center">
+      <button class="btn btn-primary" id="btn-check-verification">Check status</button>
+      <button class="btn btn-ghost" id="btn-resend-verification">Resend email</button>
+      <button class="btn btn-ghost" id="btn-verify-logout">Log out</button>
+    </div>
+    <div style="margin-top:12px" class="muted">If you don't see the email, check your spam folder. The verification link will return you to the app.</div>
+  </div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app-shell" class="app-shell hidden">
+  <aside class="sidebar">
+    <div class="brand" style="position:relative">
+      <div class="brand-title">RTO Practice</div>
+      <div class="brand-sub">Learner's licence prep</div>
+      <button id="btn-sidebar-close" class="icon-btn sidebar-close" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="side-nav">
+      <button class="nav-item active" data-nav="home"><span class="ni">🏠</span> Home</button>
+      <button class="nav-item" data-nav="mock"><span class="ni">📝</span> Mock Tests</button>
+      <button class="nav-item" data-nav="saved"><span class="ni">🔖</span> Saved</button>
+      <button class="nav-item" data-nav="wrong"><span class="ni">🔁</span> Review Mistakes</button>
+      <button class="nav-item" id="nav-profile"><span class="ni">👤</span> Profile</button>
+    </nav>
+    <div class="sidebar-foot">
+      <button class="btn btn-primary btn-block" id="side-start-practice">Start Practice</button>
+      <div class="side-contact">Practice anywhere, anytime with guided revision.</div>
+      <div style="margin-top:12px">
+        <button class="btn btn-ghost btn-block" id="btn-logout">Log out</button>
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-backdrop" class="sidebar-backdrop hidden"></div>
+
+  <main class="main">
+    <!-- top bar (mobile) -->
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <button id="btn-hamburger" class="icon-btn" aria-label="Open menu">☰</button>
+        <div class="topbar-brand"><img src="/logo.png" alt="logo" class="topbar-logo"/>RTO Cracker</div>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+        <button id="btn-theme-toggle" class="theme-toggle icon-btn" aria-label="Toggle theme">🌓</button>
+      </div>
+      <nav class="topbar-nav">
+        <button class="tnav active" data-nav="home">Home</button>
+        <button class="tnav" data-nav="mock">Mock</button>
+        <button class="tnav" data-nav="saved">Saved</button>
+        <button class="tnav" data-nav="wrong">Mistakes</button>
+      </nav>
+    </header>
+
+    <!-- ============ DASHBOARD ============ -->
+    <section id="view-home" class="view page">
+      <div class="hero-banner">
+        <div>
+          <h2 id="greeting">Good Morning!</h2>
+          <p id="greeting-sub">Let's get you ready for the learner's test.</p>
+        </div>
+        <div class="hero-ring">
+          <svg viewBox="0 0 80 80" width="76" height="76">
+            <circle cx="40" cy="40" r="34" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="8"/>
+            <circle id="ring-fg" cx="40" cy="40" r="34" fill="none" stroke="#fff" stroke-width="8"
+              stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" transform="rotate(-90 40 40)"/>
+          </svg>
+          <div class="ring-label"><span id="ring-pct">0%</span><small>SYLLABUS<br>COVERED</small></div>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-card"><div class="stat-k">OVERALL ACCURACY</div><div class="stat-v" id="stat-accuracy">—</div></div>
+        <div class="stat-card"><div class="stat-k">QUESTIONS ATTEMPTED</div><div class="stat-v" id="stat-attempted">0 Qs</div></div>
+        <div class="stat-card"><div class="stat-k">MOCK TESTS PASSED</div><div class="stat-v" id="stat-mocks">0 / 0</div></div>
+        <div class="stat-card stat-accent"><div class="stat-k">BEST MOCK SCORE</div><div class="stat-v" id="stat-best">—</div></div>
+      </div>
+
+      <div class="dash-cols">
+        <div>
+          <div class="section-head">
+            <h3>Practice by Topic</h3>
+            <span class="muted" id="bank-size"></span>
+          </div>
+          <div class="session-grid" id="category-grid"><!-- category cards injected --></div>
+        </div>
+        <div class="quick-col">
+          <div class="quick-card mock-cta">
+            <h4>Mock Exam</h4>
+            <p>20 questions · 20 minutes<br/>Score 12+ to pass, just like the real RTO computer test.</p>
+            <button class="btn btn-primary btn-block" data-nav="mock">Take a Mock Test</button>
+          </div>
+          <div class="quick-card">
+            <div class="quick-title">QUICK ACTIONS</div>
+            <button class="quick-action" id="qa-random">🎲 <span>Quick 10 — random practice</span> ›</button>
+            <button class="quick-action" data-nav="wrong">🔁 <span>Practice your mistakes</span> ›</button>
+            <button class="quick-action" data-nav="saved">🔖 <span>Saved questions</span> ›</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PROFILE ============ -->
+    <section id="view-profile" class="view page hidden">
+      <div class="page-head">
+        <button class="btn btn-ghost" id="btn-profile-back">← Back</button>
+        <h2>Profile</h2>
+        <p class="muted">Your account information</p>
+      </div>
+      <div class="card">
+        <div id="profile-info">
+          <div><strong>Name:</strong> <span id="profile-name">—</span></div>
+          <div><strong>Email:</strong> <span id="profile-email">—</span></div>
+          <div><strong>Provider:</strong> <span id="profile-provider">—</span></div>
+          <div><strong>Created:</strong> <span id="profile-created">—</span></div>
+          <div><strong>Last sign-in:</strong> <span id="profile-last">—</span></div>
+        </div>
+        <div style="margin-top:14px;display:flex;gap:10px">
+          <button class="btn btn-primary" id="btn-profile-edit" disabled>Update profile</button>
+          <button class="btn btn-ghost" id="btn-profile-delete">Delete account</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TOPIC SESSIONS ============ -->
+    <section id="view-topic" class="view page hidden">
+      <div class="page-head">
+        <button class="btn btn-ghost" id="btn-topic-back">← Back</button>
+        <h2 id="topic-title">Topic Sessions</h2>
+        <p class="muted" id="topic-sub">Choose a session to start practice</p>
+      </div>
+      <div id="topic-sessions" class="session-grid"></div>
+      <div style="margin-top:18px">
+        <button class="btn btn-primary" id="btn-topic-practice-all">Practice full topic →</button>
+        <button class="btn btn-ghost" id="btn-topic-practice-wrong">Practice wrong only</button>
+      </div>
+    </section>
+
+    <!-- ============ SESSION DETAIL ============ -->
+    <section id="view-session-detail" class="view page hidden">
+      <div class="page-head">
+        <button class="btn btn-ghost" id="btn-session-back">← Back</button>
+        <h2 id="session-title">Session Detail</h2>
+        <p class="muted" id="session-sub">Per-question breakdown</p>
+      </div>
+      <div id="session-detail-list" class="review-list"></div>
+      <div style="margin-top:16px">
+        <button class="btn btn-primary" id="btn-session-retry-wrong">Retry wrong questions</button>
+        <button class="btn btn-ghost" id="btn-session-practice-again">Practice full session again</button>
+      </div>
+    </section>
+
+    <!-- ============ MOCK LANDING ============ -->
+    <section id="view-mock" class="view page">
+      <div class="page-head"><h2>Mock Tests</h2><p class="muted">Simulates the Kerala learner's licence computer test.</p></div>
+      <div class="mock-rules card">
+        <h4>Exam pattern</h4>
+        <ul>
+          <li><strong>20 questions</strong> drawn from the full bank (signs, rules, safety, fines…)</li>
+          <li><strong>20 minutes</strong> total — the timer is always visible</li>
+          <li><strong>12 correct</strong> answers required to pass</li>
+          <li>No feedback until you submit — just like the real test</li>
+        </ul>
+        <button class="btn btn-primary" id="btn-mock-start">Start Mock Test →</button>
+      </div>
+      <div class="section-head"><h3>Your attempts</h3></div>
+      <div id="mock-history" class="mock-history"></div>
+    </section>
+
+    <!-- ============ SAVED ============ -->
+    <section id="view-saved" class="view page">
+      <div class="page-head"><h2>Saved Questions</h2><p class="muted">Bookmarked for revision.</p></div>
+      <div id="saved-list" class="review-list"></div>
+    </section>
+
+    <!-- ============ WRONG ============ -->
+    <section id="view-wrong" class="view page">
+      <div class="page-head"><h2>Review Mistakes</h2><p class="muted">Questions you've answered incorrectly. Clear them by getting them right in practice.</p></div>
+      <div class="wrong-actions"><button class="btn btn-primary" id="btn-practice-wrong">Practice these questions →</button></div>
+      <div id="wrong-list" class="review-list"></div>
+    </section>
+  </main>
+</div>
+
+<!-- ============ QUIZ (practice & mock) ============ -->
+<section id="view-quiz" class="view quiz-view hidden">
+  <div id="timing-toast" class="timing-toast hidden" aria-live="polite"></div>
+  <header class="quiz-header">
+    <div class="quiz-progressbar"><div id="quiz-progress-fill"></div></div>
+    <div class="quiz-header-row">
+      <button class="icon-btn" id="quiz-close" title="Exit">✕</button>
+      <div class="quiz-title" id="quiz-title">Practice</div>
+      <div class="quiz-timer" id="quiz-timer">⏱ 20:00</div>
+    </div>
+  </header>
+  <div class="quiz-body">
+    <div class="quiz-card">
+      <div class="q-count" id="q-count">QUESTION 1 OF 20</div>
+      <h2 class="q-text" id="q-text">…</h2>
+      <div class="q-image-wrap hidden" id="q-image-wrap"><img id="q-image" alt="Traffic sign"/></div>
+      <div class="q-options" id="q-options"></div>
+      <div class="q-feedback hidden" id="q-feedback"></div>
+      <div class="quiz-actions">
+        <button class="icon-btn save-btn" id="btn-save-q" title="Save question">🔖</button>
+        <div class="spacer"></div>
+        <button class="btn btn-ghost hidden" id="btn-skip">Skip</button>
+        <button class="btn btn-primary" id="btn-next" disabled>Next Question →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESULT ============ -->
+<section id="view-result" class="view quiz-view hidden">
+  <div class="quiz-body">
+    <div class="quiz-card result-card">
+      <div id="result-emoji" class="result-emoji">🎉</div>
+      <h2 id="result-heading">You passed!</h2>
+      <div class="result-score" id="result-score">16 / 20</div>
+      <p class="muted" id="result-sub"></p>
+      <div id="result-summary" class="result-summary"></div>
+      <div class="result-bar"><div id="result-bar-fill"></div><div class="pass-mark" title="Pass mark"></div></div>
+      <div class="result-actions">
+        <button class="btn btn-ghost" id="btn-result-review">Review answers</button>
+        <button class="btn btn-secondary" id="btn-download-qa">Download Q&amp;A PDF</button>
+        <button class="btn btn-primary" id="btn-result-home">Back to Dashboard</button>
+      </div>
+      <div id="result-review" class="review-list hidden"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <div>
+      <strong>RTO PRACTICE PORTAL</strong>
+      <div class="foot-note">Question bank based on the official Kerala learner's test syllabus.</div>
+    </div>
+    <div style="text-align:right">
+      <div class="foot-note">Made by Justin • <a href="https://www.instagram.com/justinkjames.xyz/" target="_blank">instagram.com/justinkjames.xyz</a></div>
+      <div style="font-size:11px;color:var(--on-surface-variant);margin-top:6px">© RTO Crackers</div>
+    </div>
+  </div>
+</footer>
+<!-- html2pdf for client-side PDF export -->
+<script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

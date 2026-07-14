@@ -1,0 +1,21 @@
+{
+"325": {"drop": true},
+"327": {"drop": true},
+"328": {"drop": true},
+"331": {"drop": true},
+"332": {"drop": true},
+"335": {"drop": true},
+"336": {"drop": true},
+"337": {"drop": true},
+"339": {"drop": true},
+"340": {"drop": true},
+"343": {"drop": true},
+"344": {"drop": true},
+"358": {"drop": true},
+"635": {"q": "Which of the following are vehicles designated for emergency duty? (i) Vehicles designated by the state government as emergency vehicles (ii) Ambulances and firefighting vehicles (iii) Vehicles for rescue operations (iv) Police vehicles", "options": ["Only (i) is correct", "(i), (ii), (iv) only is correct", "(ii), (iv) only is correct", "All four are correct"], "answer": 3},
+"636": {"drop": true},
+"637": {"drop": true},
+"638": {"drop": true},
+"649": {"drop": true},
+"650": {"q": "Which of the following statements are correct? (i) If goods are protruding beyond the permissible limit at the front, rear, sides or height, a fine of Rs. 20,000/- is imposed (ii) If any driver refuses to stop or weigh his vehicle, a fine of Rs. 40,000/- is imposed", "options": ["Only (i) is correct", "Only (ii) is correct", "Neither is correct", "Both are correct"], "answer": 3}
+}

@@ -1,0 +1,168 @@
+{
+"89": {"multi": [
+ {"q": "When a cow is standing across the road…", "options": ["Wait until it moves from the road", "Pass in front of the cow", "Pass behind the cow", "Pass on the left side"], "answer": 2},
+ {"q": "Painting a private motor car with olive green paint is…", "options": ["Not allowed", "Allowed", "Requires special permission", "Allowed only for motorcycles"], "answer": 0}
+]},
+"138": {"options": ["To proceed straight at a four-way junction", "To slow down the vehicle behind", "To drive the vehicle faster at a busy junction", "For emergency parking, especially on highways and busy roads"], "answer": 3},
+"145": {"options": ["Right side", "Left side", "Middle", "None of the above"], "answer": 0},
+"160": {"options": ["Getting punctured", "Skidding", "Wearing out", "Low tire pressure"], "answer": 1},
+"172": {"multi": [
+ {"q": "The wiper fitted on the vehicle's windscreen is for…", "options": ["Wiping water when washing", "Cleaning the windshield in any season", "As a signal to stop an approaching vehicle", "Protecting the screen"], "answer": 1},
+ {"q": "Which safety device fitted in a light motor vehicle protects the driver from injury?", "options": ["Seat position", "Seat belt", "Seat tightener", "Headrest"], "answer": 1}
+]},
+"173": {"options": ["Driving with bad behaviour as high beams blind others", "A safe driver as the high beam illuminates the road", "Protecting other road users", "None of the above"], "answer": 0},
+"182": {"options": ["Should walk on the left side of the road", "Should walk on the right side of the road", "Can walk on either side of the road", "Are not allowed to walk on the road"], "answer": 1},
+"185": {"multi": [
+ {"q": "A driver of a motor vehicle should drive", "options": ["On the right side of the road", "On the left side of the road", "In the middle of the road", "On any side of the road"], "answer": 1},
+ {"q": "When a vehicle is parked on the roadside at night…", "options": ["The vehicle must be locked", "A person licensed to drive such a vehicle must be in the driving seat", "The park light must be on", "All of the above"], "answer": 2}
+]},
+"187": {"options": ["Stopping vehicles", "Crossing for pedestrians", "Giving priority to vehicles", "Slowing down vehicles"], "answer": 1},
+"191": {"options": ["Permissible", "Not permissible", "Permissible with caution", "Permissible if no vehicles are coming from the opposite direction"], "answer": 1},
+"192": {"multi": [
+ {"q": "Drunk driving…", "options": ["Is allowed in private vehicles", "Is allowed at night", "Is prohibited in all vehicles", "Is allowed in transport vehicles"], "answer": 2},
+ {"q": "The use of a rearview mirror is for", "options": ["Seeing the blind spot", "Monitoring traffic coming from behind", "Seeing the rear seat passenger", "None of the above"], "answer": 1}
+]},
+"193": {"options": ["Is permissible in a bus", "Is permissible in an auto-rickshaw", "Is permissible for a pillion rider sitting side-saddle on a motorcycle", "Is prohibited in all vehicles"], "answer": 3},
+"194": {"options": ["On turns", "On the footpath", "Where parking is not prohibited", "None of the above"], "answer": 2},
+"195": {"options": ["Do not check the air pressure", "Do not smoke", "Do not use any lights of the vehicle", "All of the above"], "answer": 1},
+"201": {"multi": [
+ {"q": "What should you do when you see a \"School\" traffic sign while driving?", "options": ["Stop the vehicle, honk, and proceed", "Slow down and proceed with caution", "Honk continuously and proceed", "All of the above"], "answer": 1},
+ {"q": "When turning left, the driver of a two-wheeler should", "options": ["Extend his left hand to the left", "Not show a hand signal", "Show a signal for left with his right hand", "None of the above"], "answer": 0}
+]},
+"208": {"options": ["Permitted in unavoidable circumstances", "A violation of the law", "Permitted when there is less traffic", "All of the above"], "answer": 1},
+"212": {"options": ["Is an offence that can lead to suspension or cancellation of the driving license", "Is an offence that leads only to a fine", "Is not an offence in case of an emergency", "Is not an offence"], "answer": 0},
+"213": {"options": ["It must be reported to the nearest police station immediately", "It must be reported to the nearest police station within 12 hours", "It must be reported to the nearest police station within 24 hours", "It must be reported to the nearest police station within 48 hours"], "answer": 2},
+"214": {"multi": [
+ {"q": "Smoking while driving a public service vehicle…", "options": ["Will result in suspension of the driving license", "Can only attract a fine", "Is not an offence", "Smoking is allowed if passengers permit"], "answer": 0},
+ {"q": "Overloading a goods vehicle…", "options": ["Is not legally punishable", "Only attracts a fine", "Is legally punishable, including a fine and license suspension", "None of the above is the correct answer"], "answer": 2}
+]},
+"215": {"options": ["It is legally punishable, including a fine and license suspension", "Only attracts a fine", "Is legally correct", "None of the above is the correct answer"], "answer": 0},
+"216": {"options": ["Must not touch or cross the yellow line", "Can overtake only on the right side of the yellow line", "Should cross the line only when overtaking the vehicle in front", "None of the above is the correct answer"], "answer": 0},
+"217": {"options": ["Give priority to vehicles coming downhill", "Give priority to vehicles going uphill", "Give priority to overloaded vehicles", "Give priority to heavy vehicles"], "answer": 1},
+"218": {"options": ["Should not carry any person other than the driver", "Can carry more than two persons including the driver", "Can carry more than three persons excluding the driver", "None of the above is the correct answer"], "answer": 0},
+"221": {"options": ["You can drive when there is less traffic", "You should only drive when accompanied by an instructor who holds a driving license to ride a motorcycle", "You should not carry any other person on the motorcycle except for the purpose of receiving instructions from an instructor who holds a valid driving license for a motorcycle", "None of the above is the correct answer"], "answer": 2},
+"226": {"options": ["Check the coolant level and engine oil level", "Check the headlight", "Check the brake", "All of the above"], "answer": 0},
+"229": {"multi": [
+ {"q": "What is the maximum permissible weight that can be carried in a goods vehicle?", "options": ["No limit", "As permitted by the Registration Certificate/Permit", "As permitted by the Insurance Certificate", "As decided by the owner"], "answer": 1},
+ {"q": "According to Section 112 of the Motor Vehicles Act, 1988", "options": ["Speed limit should not be exceeded", "Should not drive after consuming alcohol", "Should not use the vehicle on the road without paying tax", "The gross weight of the vehicle should not be exceeded"], "answer": 0}
+]},
+"230": {"options": ["After consuming alcohol", "Exceeding the speed limit", "Exceeding the gross vehicle weight", "None of the above"], "answer": 2},
+"232": {"options": ["Wear a jerkin", "Wear a helmet", "Wear shoes", "Wear gloves"], "answer": 1},
+"233": {"options": ["Dangerous only for two-wheelers", "Always dangerous for all vehicles", "A threat to four-wheeled vehicles", "Safe when the road is slippery"], "answer": 1},
+"235": {"options": ["Be an authorised driving trainer", "Hold a driving license", "Hold a learner's license", "Be an instructor"], "answer": 1},
+"236": {"multi": [
+ {"q": "It is essential to wear a helmet when riding a two-wheeler because", "options": ["It is for your personal safety", "Otherwise, you will be caught by the traffic police", "It is necessary for equality on the road", "It is safe for all road users"], "answer": 0},
+ {"q": "You are overtaking a car at night. What should you be careful about?", "options": ["You should not dazzle other road users", "You should flash your headlamps before overtaking", "Your rear fog lights are turned on", "Dim your headlight"], "answer": 1}
+]},
+"238": {"options": ["Near an oncoming vehicle", "When fog lamps are switched on in foggy weather", "When driving immediately behind another vehicle", "All of the above"], "answer": 3},
+"242": {"options": ["Stay in the left lane if not overtaking", "Maintain the lane with the least traffic", "Always stay in the right lane at high speed", "Drive in the centre lane"], "answer": 0},
+"245": {"options": ["Is prohibited by law", "Changing fuel is not allowed", "Cannot be used even in the case of modern LPG in-built models", "Can be used after certification from the authorities"], "answer": 3},
+"246": {"options": ["Mechanically disabled or incompletely assembled motor vehicles", "Registered vehicles", "Unregistered vehicles", "All of the above"], "answer": 0},
+"251": {"multi": [
+ {"q": "Attaching or hanging anything on the rearview mirror…", "options": ["Is against the regulation", "Is permissible depending on its size", "Is permissible if the object does not obstruct the driver's view", "Is permissible if the object does not obstruct other road users"], "answer": 0},
+ {"q": "When riding together (group riding), the positions for two or more motorcycles driving on the road are?", "options": ["Side by side", "Maintain a staggered line with a proper distance between motorcycles", "Travel one behind the other in a single line", "All of the above"], "answer": 1}
+]},
+"252": {"options": ["On a one-way road", "On the main road", "In a silent zone", "All of the above"], "answer": 2},
+"254": {"options": ["Regarding the duty to produce license and registration certificate", "Regarding signals and signalling devices", "Regarding precautions at unmanned railway level crossings", "Regarding the driver's duty in case of an accident"], "answer": 2},
+"256": {"options": ["30 mg per 100 ml of blood", "Less than 30 mg per 100 ml of blood", "More than 100 mg per 100 ml of blood", "None of the above"], "answer": 0},
+"258": {"multi": [
+ {"q": "The colour of the number plate of commercial vehicles?", "options": ["Black letters and numbers on a yellow background", "Yellow letters on a black background", "Black letters on a white background", "White letters and numbers on a yellow background"], "answer": 0},
+ {"q": "When can you appear for the driving test?", "options": ["From the day after taking the learner's license", "After 30 days from the date of taking the learner's license", "After 60 days from the date of taking the learner's license", "After 90 days from the date of taking the learner's license"], "answer": 1}
+]},
+"261": {"options": ["Near a church or temple", "Near hospitals and courts", "Near a police station", "At junctions"], "answer": 1},
+"265": {"multi": [
+ {"q": "What type of horn is allowed in motor vehicles?", "options": ["Air horn", "Multi-tone horn", "Electric horn", "All of the above"], "answer": 2},
+ {"q": "You are behind a bus that has stopped to pick up or drop off passengers…", "options": ["Wait patiently behind", "Overtake from the left", "Overtake away from the pedestrians", "None of the above"], "answer": 0}
+]},
+"266": {"options": ["High speed in high torque gear", "High speed in low torque gear", "Low speed in high torque gears", "A moderate uniform speed of 45-55 km/h in top gear"], "answer": 3},
+"277": {"options": ["An intermittent single line", "Continuous double lines", "A continuous single line", "Intermittent double lines"], "answer": 3},
+"285": {"options": ["Permissible", "Permissible with caution", "Not permissible", "Both one and two are correct"], "answer": 2},
+"286": {"options": ["Good as the road can be seen clearly for a short distance", "Ensures that others can see you", "Bad because it will reflect back and scatter", "Good as the road far away can be seen clearly"], "answer": 2},
+"287": {"options": ["Possess only the vehicle's registration certificate", "Have taken instructions from a professional", "Have a valid learner's license", "Apply for a driving test within 12 months"], "answer": 2},
+"295": {"options": ["Illegal", "Legal", "Allowed in some places", "Permissible when traffic is light"], "answer": 0},
+"299": {"options": ["Honk constantly", "Warn by flashing headlights", "Slow down the vehicle and approach with caution", "Speed up and pass quickly"], "answer": 2},
+"302": {"options": ["Start the engine", "Change gears smoothly", "Control the speed of the vehicle", "Apply the brakes"], "answer": 1},
+"304": {"multi": [
+ {"q": "The brake pedal in a vehicle is primarily used to…", "options": ["Increase the vehicle's speed", "Control the vehicle's direction", "Stop or slow down", "Engage the parking brake"], "answer": 2},
+ {"q": "What does the term \"engine braking\" refer to?", "options": ["Applying the parking brake", "Slowing down the vehicle using engine compression by downshifting", "Using the brake pedal to slow down the vehicle", "Using ABS to prevent wheel lock-up"], "answer": 1}
+]},
+"306": {"options": ["Control the braking system", "Change gears automatically", "Maintain a constant speed without pressing the accelerator", "Steer the vehicle"], "answer": 2},
+"323": {"multi": [
+ {"q": "The colour of the top lights fitted on the front of goods vehicles is…", "options": ["White", "Yellow", "Blue", "Red"], "answer": 0},
+ {"q": "Which is the form for issuing a Pollution Under Control certificate?", "options": ["Form 40", "Form 51", "Form 59", "Form 59a"], "answer": 2}
+]},
+"326": {"drop": true},
+"329": {"drop": true},
+"330": {"drop": true},
+"333": {"drop": true},
+"334": {"drop": true},
+"338": {"drop": true},
+"341": {"drop": true},
+"342": {"drop": true},
+"345": {"drop": true},
+"346": {"drop": true},
+"357": {"drop": true},
+"359": {"drop": true},
+"366": {"options": ["Markings seen only on the road surface", "All types of sign boards and marks", "Includes markings on the road surface and all types of sign boards and marks", "Lines, words, or markings drawn on the carriageway, curbs, or adjacent objects of the road to control, warn, and guide road users, excluding road signs"], "answer": 3},
+"369": {"options": ["You can drive without holding the handle with both hands when driving on the highway", "You must hold the steering/handle with both hands at all times", "The driver must hold the handlebar with both hands at all times except when giving a signal", "You can always take one hand off the steering while driving"], "answer": 2},
+"370": {"options": ["The driver should slow down, give way to the traffic on the road he is approaching, and proceed with caution", "Should understand that the vehicle must be stopped because there is a traffic island ahead", "Should understand that there are mountains ahead", "Should understand to proceed with caution as there is a private junction ahead"], "answer": 0},
+"372": {"options": ["The driver must obey the uniformed police officer over the green signal lights and stop the vehicle until signalled to proceed", "Since the signal is green, the driver can proceed very quickly without obeying the police officer", "Since the signal is green, the driver can move slowly and carefully without obeying the police officer", "Since the signal is green, the driver can ignore everything else and proceed"], "answer": 0},
+"380": {"q": "If an offence under the Motor Vehicles Act is committed by a minor, such minor shall not be eligible for a driving license under Section 9 or a learner's license under Section 8 until the age of", "options": ["21", "25", "30", "Not permitted to take a license for life"], "answer": 1},
+"381": {"options": ["Driving a vehicle dangerously", "Driving a vehicle without valid insurance", "Driving a vehicle without a valid license", "Driving a vehicle without valid registration"], "answer": 0},
+"391": {"multi": [
+ {"q": "What is the maximum fine for a first offence for driving a vehicle in a public place or causing or permitting the use of a vehicle without registration?", "options": ["Rs. 5000 fine", "Rs. 10000 fine", "Rs. 15000 fine", "Rs. 20000 fine"], "answer": 1},
+ {"q": "What is the maximum fine for a person who drives a motor vehicle or causes or permits the use of a motor vehicle without a valid permit?", "options": ["Two thousand rupees fine", "Five thousand rupees fine", "Ten thousand rupees fine", "Fifteen thousand rupees fine"], "answer": 2}
+]},
+"397": {"multi": [
+ {"q": "What is the maximum fine that a driver can receive for the second or subsequent offence of excessive, continuous or unnecessary honking of the horn while driving a vehicle?", "options": ["Five hundred rupees fine", "One thousand rupees fine", "One thousand five hundred rupees fine", "Two thousand rupees fine"], "answer": 3},
+ {"q": "What is the maximum fine that a driver can receive for the first offence of driving a vehicle without valid insurance in a public place or allowing or permitting it to be driven?", "options": ["Fifteen hundred rupees fine", "One thousand and fifty rupees fine", "Two thousand rupees fine", "Three thousand rupees fine"], "answer": 2}
+]},
+"401": {"q": "A police officer or other person authorised by the State Government may, if he has reason to believe that the driver of a vehicle has committed the offence of…, seize the driving licence of such driver and hand it over to the licensing authority for disqualification or cancellation under section 19", "options": ["Using a vehicle without registration", "Driving at excessive speed", "Driving without valid insurance", "Driving a vehicle without wearing a seat belt"], "answer": 1},
+"409": {"q": "If any person who is authorised to give directions under the Motor Vehicles Act intentionally violates any of the directions given by the authority or by law, or obstructs such person in the discharge of his official duty, and no other penalty is imposed for this offence, what is the maximum penalty that the driver can get?", "options": ["Rs 1,000 fine", "Rs 2,000 fine", "Rs. 5,000 penalty", "Rs. 10,000 penalty"], "answer": 1},
+"410": {"q": "If a driver is asked to furnish any information under the Motor Vehicles Act and deliberately conceals such information or furnishes information which he knows to be false, and no other penalty is imposed for this offence, what is the maximum penalty that the driver is liable to pay?", "options": ["Rs 1,000 fine", "Rs 2,000 fine", "Rs. 5,000 penalty", "Rs. 10,000 penalty"], "answer": 1},
+"413": {"options": ["2", "3", "4", "5"], "answer": 1},
+"414": {"options": ["The right-hand path", "Any path", "The left path", "No path specified"], "answer": 2},
+"415": {"multi": [
+ {"q": "What is the fine for not wearing a seatbelt?", "options": ["Rs 500", "A fine of Rs 500 and license suspension", "Rs 1000", "A fine of Rs 1000 and license suspension"], "answer": 2},
+ {"q": "What does it mean to be a Good Samaritan?", "options": ["A person who assists in repairing a vehicle", "A person who provides assistance to a person in an accident or takes them to the hospital", "A person who stops at the scene of an accident and takes photos", "A person who arranges rural transportation"], "answer": 1}
+]},
+"416": {"options": ["Two-wheeler only line", "Bus way", "Public transport only", "For bicycles only"], "answer": 3},
+"417": {"options": ["Red and white intermittent lines", "Yellow and white zebra lines", "Black and white intermittent lines", "Red and yellow intermittent lines"], "answer": 1},
+"418": {"options": ["The weight allowed to be carried in a vehicle", "The empty weight of a vehicle", "The total weight of the vehicle plus the permissible weight of goods that can be carried in the vehicle, as certified and registered", "None of the above is correct"], "answer": 2},
+"420": {"options": ["Up to the age of 60", "Up to the age of 65", "Five years", "Ten years"], "answer": 0},
+"422": {"options": ["Three years", "Similar to a non-transport vehicle", "Ten years", "Five years"], "answer": 3},
+"426": {"options": ["Two years", "Five years", "10 years", "15 years"], "answer": 3},
+"427": {"multi": [
+ {"q": "Parts of the road that cannot be seen through the rear-view mirrors when looking ahead", "options": ["Black spot", "Non-vision area", "Blind spot", "Accident prone area"], "answer": 2},
+ {"q": "What do you mean by MSM in driving theory?", "options": ["Mirror Slowdown Manoeuvre", "Mirror Signal Manoeuvre", "Manoeuvre Signal Mirror", "Manoeuvre Slowdown Mirror"], "answer": 1}
+]},
+"428": {"drop": true},
+"430": {"options": ["Left side of the rear windshield glass top", "Right side of the rear windshield glass top", "Left side of the front windshield glass top", "Right side of the front windshield glass top"], "answer": 2},
+"432": {"options": ["Non-stop drive", "Non-skid drive", "Non-skid depth", "Non-stop depth"], "answer": 2},
+"433": {"options": ["Air conditioning", "Wheel alignment", "Tires", "Brake system"], "answer": 2},
+"434": {"multi": [
+ {"q": "What colour lights are allowed on a motor vehicle?", "options": ["Amber, red and white", "Blue, red and white", "Amber, white and blue", "Red, white and blue"], "answer": 0}
+]},
+"436": {"options": ["To increase the aesthetic appeal of the tire", "To maintain traction and improve fuel efficiency", "To provide traction and facilitate water distribution", "To reduce tread wear of the tire"], "answer": 2},
+"437": {"options": ["Road Safety Act 2007", "Kerala Police Act 2011", "Good Samaritan Act", "Motor Vehicles Act 2011"], "answer": 2},
+"439": {"options": ["To avoid serious injury to health", "To prevent a crime", "To extinguish a fire", "To reach an emergency meeting"], "answer": 3},
+"441": {"q": "What is the maximum speed at which transport vehicles manufactured on or after 1 October 2015 must be equipped with a speed limiting device under the Motor Vehicles Act 1988?", "options": ["50 km/h", "60 km/h", "70 km/h", "80 km/h"], "answer": 3},
+"442": {"multi": [
+ {"q": "What is the maximum speed to be set on the speed control device of all stage carriages, tipper lorries, heavy transport vehicles, tankers and vehicles carrying dangerous goods?", "options": ["50 km/h", "60 km/h", "70 km/h", "80 km/h"], "answer": 1},
+ {"q": "What is the maximum speed permitted for school buses and all vehicles used for transporting school children?", "options": ["50 km/h", "60 km/h", "70 km/h", "80 km/h"], "answer": 0},
+ {"q": "What is the maximum speed permitted for two-wheelers on all roads in Kerala except urban roads?", "options": ["50 km/h", "60 km/h", "70 km/h", "80 km/h"], "answer": 1},
+ {"q": "What is the current maximum speed limit for M1 category vehicles (motor vehicles used for passenger transport with not more than eight seats in addition to the driver's seat) on a six-lane national highway?", "options": ["80 km/h", "90 km/h", "100 km/h", "110 km/h"], "answer": 2},
+ {"q": "What is the maximum speed limit currently allowed on a four-lane national highway for M1 category vehicles (motor vehicles used for passenger transport with not more than eight seats in addition to the driver's seat)?", "options": ["80 km/h", "90 km/h", "100 km/h", "110 km/h"], "answer": 2},
+ {"q": "What is the maximum speed limit permissible near a school area as per the Driving Regulations, 2017?", "options": ["25 km/h", "30 km/h", "35 km/h", "20 km/h"], "answer": 0},
+ {"q": "The driver should strictly adhere to the existing rules regarding prohibition of use and ensure that the same is followed by other staff and passengers:", "options": ["Alcohol", "Drugs", "Smoking", "All of the above"], "answer": 3}
+]},
+"445": {"q": "When is changing the lane of the vehicle necessary?", "options": ["When the driver has to avoid an obstacle on the road", "Choosing the right path before turning", "When overtaking a speeding vehicle", "All of the above"], "answer": 3},
+"447": {"multi": [
+ {"q": "A properly configured headrest, when driving a car, will help…", "options": ["To make you more comfortable", "Helps prevent neck pain", "Help you relax", "Help to maintain your driving position"], "answer": 1},
+ {"q": "Mobile phones should only be used while driving…", "options": ["When receiving a call", "After the vehicle has come to a stop", "Driving at a speed of less than 30 km/h", "Driving an automatic transmission vehicle"], "answer": 1}
+]},
+"448": {"multi": [
+ {"q": "What is the best way to avoid fatigue while driving?", "options": ["Avoid driving at night", "Stop for a break", "Run without loading goods", "Drink two pegs of good quality whiskey"], "answer": 1},
+ {"q": "Which of the following types of glasses should not be worn while driving at night?", "options": ["Half Moon", "Circular", "Bi-focal", "Tinted"], "answer": 3}
+]}
+}
