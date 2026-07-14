@@ -301,21 +301,22 @@ function showTopicSessions(cat) {
   chunks.forEach((chunk, i) => {
     const key = `${cat}:${i}`;
     const sess = state.sessions[key];
-    const attemptedCount = sess ? (sess.attemptedCount || (sess.total || chunk.length)) : (chunk.filter(q => q.id in state.answered).length);
-    const attempted = `${attemptedCount}/${chunk.length}`;
+    const attemptedCount = sess ? (sess.attemptedCount || sess.total || 0) : chunk.filter(q => q.id in state.answered).length;
     const correct = sess ? sess.score : chunk.filter(q => state.answered[q.id]).length;
+    const wrong = Math.max(0, attemptedCount - correct);
     const pct = Math.round(100 * attemptedCount / chunk.length);
+    const notStarted = attemptedCount === 0;
     const div = document.createElement('div');
     div.className = 'topic-session';
     // show resume button if there's an inprogress session matching this key
     const inprog = state.sessions && state.sessions.inprogress && state.sessions.inprogress.key === key;
     div.innerHTML = `
-      <div class="ts-top"><div><strong>Session ${i + 1}</strong><div class="ts-meta">${chunk.length} questions · ${attempted}</div></div><div class="ts-badge">${pct}%</div></div>
-      <div class="ts-meta">${correct} correct · ${chunk.length - correct} wrong</div>
+      <div class="ts-top"><div><strong>Session ${i + 1}</strong><div class="ts-meta">${chunk.length} questions${notStarted ? '' : ` · ${attemptedCount}/${chunk.length} done`}</div></div><div class="ts-badge">${notStarted ? 'New' : pct + '%'}</div></div>
+      <div class="ts-meta">${notStarted ? 'Not attempted yet' : `${correct} correct · ${wrong} wrong`}</div>
       <div class="ts-actions">
-        <button class="btn btn-primary" data-start-session="${i}">${inprog ? 'Resume' : 'Start'}</button>
-        <button class="btn btn-ghost" data-retry-session="${i}">Retry wrong</button>
-        <button class="btn btn-ghost" data-detail-session="${i}">Details</button>
+        <button class="btn btn-primary" data-start-session="${i}">${inprog ? 'Resume' : (notStarted ? 'Start' : 'Restart')}</button>
+        <button class="btn btn-ghost" data-retry-session="${i}"${notStarted ? ' disabled' : ''}>Retry wrong</button>
+        <button class="btn btn-ghost" data-detail-session="${i}"${notStarted ? ' disabled' : ''}>Details</button>
       </div>`;
     container.appendChild(div);
   });
