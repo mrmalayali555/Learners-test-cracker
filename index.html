@@ -79,6 +79,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script>
+try {
+  var t = JSON.parse(localStorage.getItem('rto_theme'));
+  if (t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches)
+    document.documentElement.classList.add('dark');
+} catch (e) {}
+</script>
 <link rel="stylesheet" href="app.css"/>
 <link rel="icon" type="image/png" href="/logo.png"/>
 <link rel="apple-touch-icon" href="/logo.png"/>
@@ -277,7 +284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <header class="topbar">
       <div style="display:flex;align-items:center;gap:12px">
         <button id="btn-hamburger" class="icon-btn" aria-label="Open menu">☰</button>
-        <div class="topbar-brand"><img src="/logo.png" alt="logo" class="topbar-logo"/>RTO Cracker</div>
+        <div class="topbar-brand"><img src="/logo.png" alt="RTO Cracker logo" class="topbar-logo"/><span class="topbar-brand-text">RTO Cracker</span></div>
       </div>
       <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
         <button id="btn-theme-toggle" class="theme-toggle icon-btn" aria-label="Toggle theme">🌓</button>
@@ -467,6 +474,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
   </div>
 </section>
+
+<button id="btn-theme-float" class="theme-float" aria-label="Toggle light/dark mode" title="Light / dark mode">🌓</button>
 
 <footer class="site-footer">
   <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">

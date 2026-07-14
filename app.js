@@ -874,8 +874,7 @@ async function deleteAccountFlow() {
 }
 
 function toggleTheme() {
-  const cur = store.get('theme', 'light');
-  const next = cur === 'dark' ? 'light' : 'dark';
+  const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
   store.set('theme', next);
   document.documentElement.classList.toggle('dark', next === 'dark');
 }
@@ -910,6 +909,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   if ($('#btn-verify-logout')) $('#btn-verify-logout').addEventListener('click', async () => { await signOut(auth); show('welcome'); });
   if ($('#btn-theme-toggle')) $('#btn-theme-toggle').addEventListener('click', toggleTheme);
+  if ($('#btn-theme-float')) $('#btn-theme-float').addEventListener('click', toggleTheme);
   $('#btn-google-signin').addEventListener('click', signInWithGoogle);
   $('#btn-guest').addEventListener('click', enterApp);
   $('#btn-guest').addEventListener('click', () => { store.set('guest', true); enterApp(); });
@@ -1010,8 +1010,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (state.name || Object.keys(state.answered).length) enterApp();
   else show('welcome');
-  // apply theme from storage
-  document.documentElement.classList.toggle('dark', store.get('theme', 'light') === 'dark');
+  // apply theme: saved choice wins, otherwise follow the phone/laptop system setting
+  const savedTheme = store.get('theme', null);
+  const wantDark = savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.classList.toggle('dark', wantDark);
   // wire profile / logout
   if ($('#nav-profile')) $('#nav-profile').addEventListener('click', () => { renderProfile(); show('profile'); });
   if ($('#btn-logout')) $('#btn-logout').addEventListener('click', async () => { try { await signOut(auth); } catch {} store.set('guest', false); show('welcome'); });
