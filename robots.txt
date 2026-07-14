@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rto-cracker.vercel.app/sitemap.xml

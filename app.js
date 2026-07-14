@@ -20,7 +20,8 @@ const MOCK_N = 20, MOCK_PASS = 12, MOCK_SECS = 20 * 60;
 
 const authDomain = 'fir-4cdbf.firebaseapp.com';
 const localPreviewUrl = 'http://localhost:8000/rto-cracker/';
-const actionCodeSettings = { url: localPreviewUrl, handleCodeInApp: false };
+const siteUrl = 'https://rto-cracker.vercel.app/';
+const actionCodeSettings = { url: siteUrl, handleCodeInApp: false };
 
 function ensureLocalPreviewHost() {
   if (window.location.hostname === '127.0.0.1' && !window.location.href.includes('localhost')) {
