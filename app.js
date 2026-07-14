@@ -708,7 +708,7 @@ async function signUpWithEmail(e) {
     try {
       await sendEmailVerification(cred.user, actionCodeSettings);
       console.log('sendEmailVerification: email sent to', email);
-      setAuthMessage(`Verification email sent to ${email}.`, 'success');
+      setAuthMessage(`Verification email sent to ${email}. ⚠️ It usually lands in your SPAM/JUNK folder — please check there too!`, 'success');
       $('#verification-actions').classList.remove('hidden');
       // reset local progress for a fresh account
       state.answered = {};
@@ -755,9 +755,33 @@ async function loginWithEmail(e) {
     }
     applySignedInUser(result.user);
   } catch (err) {
-    const message = err?.code === 'auth/user-not-found' || err?.code === 'auth/wrong-password'
-      ? 'Incorrect email or password.'
-      : 'Could not log in right now.';
+    console.warn('login failed', err?.code);
+    let message;
+    switch (err?.code) {
+      case 'auth/user-not-found':
+        message = 'No account exists with this email. Please create an account first — tap "Sign Up" above.';
+        break;
+      case 'auth/wrong-password':
+        message = 'This email is registered, but the password is wrong. Try again or tap "Forgot Password?".';
+        break;
+      case 'auth/invalid-credential':
+        message = 'Email or password is incorrect. If you don\'t have an account yet, tap "Sign Up" to create one first.';
+        break;
+      case 'auth/invalid-email':
+        message = 'Please enter a valid email address.';
+        break;
+      case 'auth/user-disabled':
+        message = 'This account has been disabled. Please contact support.';
+        break;
+      case 'auth/too-many-requests':
+        message = 'Too many failed attempts. Please wait a few minutes and try again, or reset your password.';
+        break;
+      case 'auth/network-request-failed':
+        message = 'Network problem — check your internet connection and try again.';
+        break;
+      default:
+        message = 'Could not log in right now. Please try again.';
+    }
     setAuthMessage(message, 'error');
   }
 }
@@ -770,7 +794,7 @@ async function resetPasswordFlow() {
   }
   try {
     await sendPasswordResetEmail(auth, email);
-    setAuthMessage('Password reset email sent. Check your inbox.', 'success');
+    setAuthMessage('Password reset email sent. ⚠️ Check your SPAM/JUNK folder too — it often lands there!', 'success');
     $('#reset-panel').classList.add('hidden');
   } catch (err) {
     const message = err?.code === 'auth/invalid-email'
@@ -789,7 +813,7 @@ async function resendVerificationEmail() {
   try {
     await sendEmailVerification(user, actionCodeSettings);
     console.log('resendVerificationEmail: sent to', user.email);
-    setAuthMessage('Verification email sent again.', 'success');
+    setAuthMessage('Verification email sent again. ⚠️ Don\'t forget to check your SPAM/JUNK folder!', 'success');
   } catch (err) {
     console.error('resendVerificationEmail failed', err);
     setAuthMessage('Could not resend the verification email. See console.', 'error');
