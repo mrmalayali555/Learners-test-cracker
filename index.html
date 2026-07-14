@@ -81,12 +81,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script>
 try {
-  var t = JSON.parse(localStorage.getItem('rto_theme'));
-  if (t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches)
+  if (JSON.parse(localStorage.getItem('rto_theme')) === 'dark')
     document.documentElement.classList.add('dark');
 } catch (e) {}
 </script>
-<link rel="stylesheet" href="app.css"/>
+<link rel="stylesheet" href="app.css?v=3"/>
 <link rel="icon" type="image/png" href="/logo.png"/>
 <link rel="apple-touch-icon" href="/logo.png"/>
 <!-- Microsoft Clarity -->
@@ -475,6 +474,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- Finish loader overlay -->
+<div id="finish-loader" class="finish-loader hidden" role="status" aria-live="polite">
+  <div class="finish-loader-box">
+    <img src="/logo.png" alt="" class="finish-loader-logo"/>
+    <div class="finish-loader-title">Preparing your results…</div>
+    <div class="finish-loader-track"><div id="finish-loader-bar" class="finish-loader-fill"></div></div>
+    <div id="finish-loader-pct" class="finish-loader-pct">0%</div>
+  </div>
+</div>
+
 <button id="btn-theme-float" class="theme-float" aria-label="Toggle light/dark mode" title="Light / dark mode">🌓</button>
 
 <footer class="site-footer">
@@ -491,6 +500,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- html2pdf for client-side PDF export -->
 <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
-<script type="module" src="app.js"></script>
+<script type="module" src="app.js?v=3"></script>
 </body>
 </html>

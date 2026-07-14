@@ -1,7 +1,7 @@
 /* RTO Practice Portal */
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signInWithRedirect, getRedirectResult, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail, updateProfile, signOut, deleteUser, applyActionCode } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-import { getFirestore, doc, setDoc, updateDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+import { getFirestore, doc, getDoc, setDoc, updateDoc, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 (() => {
 'use strict';
@@ -82,6 +82,52 @@ async function saveUserState() {
     }, { merge: true });
     console.log('saveUserState: synced to Firestore for', uid);
   } catch (e) { console.warn('saveUserState failed', e); }
+}
+
+// Pull the signed-in user's saved progress from Firestore and merge it with
+// whatever is in this browser, so a Google account carries progress across
+// devices and browsers. Union everything; never drop a completed question.
+let userStateLoaded = false;
+async function loadUserState(user) {
+  if (!user) return;
+  try {
+    const snap = await getDoc(doc(db, 'users', user.uid));
+    if (!snap.exists()) { userStateLoaded = true; await saveUserState(); return; }
+    const remote = snap.data() || {};
+
+    // answered: union of both; a question answered anywhere stays answered.
+    // Keep "correct" if it was ever correct on either device.
+    const mergedAnswered = { ...(remote.answered || {}) };
+    for (const [id, ok] of Object.entries(state.answered || {})) {
+      mergedAnswered[id] = mergedAnswered[id] === true || ok === true ? (mergedAnswered[id] === true || ok === true) : false;
+    }
+    state.answered = mergedAnswered;
+
+    state.saved = [...new Set([...(remote.saved || []), ...(state.saved || [])])];
+    state.studied = [...new Set([...(remote.studied || []), ...(state.studied || [])])];
+
+    // mocks: union, de-duplicated by timestamp, chronological
+    const mockMap = new Map();
+    [...(remote.mocks || []), ...(state.mocks || [])].forEach(m => m && mockMap.set(m.date, m));
+    state.mocks = [...mockMap.values()].sort((a, b) => a.date - b.date);
+
+    // sessions: prefer whichever record has more attempts for each key
+    const mergedSessions = { ...(remote.sessions || {}) };
+    for (const [k, local] of Object.entries(state.sessions || {})) {
+      if (k === 'inprogress') { mergedSessions[k] = local; continue; }
+      const rem = mergedSessions[k];
+      if (!rem) { mergedSessions[k] = local; continue; }
+      const localAtt = (local.answers && local.answers.length) || local.total || 0;
+      const remAtt = (rem.answers && rem.answers.length) || rem.total || 0;
+      mergedSessions[k] = localAtt >= remAtt ? local : rem;
+    }
+    state.sessions = mergedSessions;
+
+    if (!state.name) state.name = remote.name || '';
+    userStateLoaded = true;
+    persist(); // writes the merged result back to localStorage + Firestore
+    console.log('loadUserState: merged remote progress for', user.uid);
+  } catch (e) { console.warn('loadUserState failed', e); userStateLoaded = true; }
 }
 
 /* ---------- helpers ---------- */
@@ -295,7 +341,7 @@ function startTopicSession(cat, sessionIndex = null, wrongOnly = false) {
   if (sessionIndex === null) {
     // full topic or wrong-only across topic
     const qs = wrongOnly ? pool.filter(q => !(q.id in state.answered)) : shuffle(pool);
-    quiz = { mode: 'practice', qs: qs.slice(0, 15), i: 0, answers: [], cat, sessionIndex: null, questionStartedAt: 0, questionTimes: [], questionCompleted: false };
+    quiz = { mode: 'practice', qs: qs.slice(0, 15), i: 0, answers: [], cat, sessionIndex: null, retryWrong: wrongOnly, questionStartedAt: 0, questionTimes: [], questionCompleted: false };
     // set in-progress key for topic-wide session
     state.sessions.inprogress = { key: `${cat}:topic`, qsIds: quiz.qs.map(q => q.id), answers: quiz.answers, i: quiz.i, questionTimes: quiz.questionTimes };
     persist();
@@ -315,7 +361,7 @@ function startTopicSession(cat, sessionIndex = null, wrongOnly = false) {
     } else {
       qs = chunk;
     }
-    quiz = { mode: 'practice', qs, i: 0, answers: [], cat, sessionIndex, questionStartedAt: 0, questionTimes: [], questionCompleted: false };
+    quiz = { mode: 'practice', qs, i: 0, answers: [], cat, sessionIndex, retryWrong: wrongOnly, questionStartedAt: 0, questionTimes: [], questionCompleted: false };
     // set in-progress key for this specific session
     state.sessions.inprogress = { key: `${cat}:${sessionIndex}`, qsIds: quiz.qs.map(q => q.id), answers: quiz.answers, i: quiz.i, questionTimes: quiz.questionTimes };
     persist();
@@ -569,8 +615,34 @@ function nextQuestion() {
   else finishQuiz(false);
 }
 
+// Animate a 0→100 loader, then reveal the result. Resolves when the bar hits 100.
+function runFinishLoader() {
+  return new Promise(resolve => {
+    const overlay = $('#finish-loader');
+    const bar = $('#finish-loader-bar');
+    const pctEl = $('#finish-loader-pct');
+    if (!overlay || !bar) { resolve(); return; }
+    bar.style.width = '0%';
+    if (pctEl) pctEl.textContent = '0%';
+    overlay.classList.remove('hidden');
+    let pct = 0;
+    const timer = setInterval(() => {
+      pct = Math.min(100, pct + (pct < 70 ? 11 : 6));
+      bar.style.width = pct + '%';
+      if (pctEl) pctEl.textContent = pct + '%';
+      if (pct >= 100) {
+        clearInterval(timer);
+        setTimeout(() => { overlay.classList.add('hidden'); resolve(); }, 180);
+      }
+    }, 90);
+  });
+}
+
 async function finishQuiz(timedOut) {
   if (quiz.timer) clearInterval(quiz.timer);
+  // Show the loading overlay immediately so a slow tap never looks frozen.
+  const loaderDone = runFinishLoader();
+
   const results = quiz.qs.map((q, i) => ({ q, picked: quiz.answers[i], ok: quiz.answers[i] === q.answer }));
   const score = results.filter(r => r.ok).length;
   const totalTime = quiz.questionTimes.reduce((sum, t) => sum + (t || 0), 0);
@@ -578,32 +650,45 @@ async function finishQuiz(timedOut) {
   const fastest = quiz.questionTimes.length ? Math.min(...quiz.questionTimes.filter(Boolean)) : 0;
   const slowest = quiz.questionTimes.length ? Math.max(...quiz.questionTimes.filter(Boolean)) : 0;
 
-  // If this was a topic session, store the session result for later review
+  // If this was a topic session, store the session result for later review.
   try {
     if (quiz.mode === 'practice' && quiz.cat) {
       const key = quiz.sessionIndex === null ? `${quiz.cat}:topic` : `${quiz.cat}:${quiz.sessionIndex}`;
+      const runAnswers = results.map((r, i) => ({ id: r.q.id, picked: r.picked, ok: r.ok, time: quiz.questionTimes[i] || 0 }));
+      const existing = state.sessions[key];
+
+      // BUG FIX: a "retry wrong" run only covers the questions you got wrong.
+      // Merge those results back INTO the full session record instead of
+      // replacing it — otherwise a 14/15 session became 0/1 (the "7%" bug).
+      let mergedAnswers;
+      if (quiz.retryWrong && existing && Array.isArray(existing.answers) && existing.answers.length) {
+        const map = new Map(existing.answers.map(a => [a.id, a]));
+        runAnswers.forEach(a => map.set(a.id, a));
+        mergedAnswers = [...map.values()];
+      } else {
+        mergedAnswers = runAnswers;
+      }
+      const sessScore = mergedAnswers.filter(a => a.ok).length;
+
       state.sessions[key] = {
-        score,
-        total: quiz.qs.length,
+        score: sessScore,
+        total: mergedAnswers.length,
+        attemptedCount: mergedAnswers.length,
         date: Date.now(),
-        answers: results.map((r, i) => ({ id: r.q.id, picked: r.picked, ok: r.ok, time: quiz.questionTimes[i] || 0 })),
-        wrongIds: results.filter(r => !r.ok).map(r => r.q.id),
-        correctIds: results.filter(r => r.ok).map(r => r.q.id)
+        answers: mergedAnswers,
+        wrongIds: mergedAnswers.filter(a => !a.ok).map(a => a.id),
+        correctIds: mergedAnswers.filter(a => a.ok).map(a => a.id)
       };
-      // clear in-progress marker if it was this session
       if (state.sessions.inprogress && state.sessions.inprogress.key === key) delete state.sessions.inprogress;
       persist();
-      // also save session to Firestore under users/{uid}/sessions
-      try {
-        const user = auth.currentUser;
-        if (user) {
-          const uid = user.uid;
-          const docRef = await addDoc(collection(db, 'users', uid, 'sessions'), {
-            key, score, total: quiz.qs.length, date: Date.now(), answers: state.sessions[key].answers
-          });
-          console.log('Saved session to Firestore:', docRef.id);
-        }
-      } catch (e) { console.warn('Could not save session to Firestore', e); }
+      // Save to Firestore in the BACKGROUND — never block the result screen on it.
+      const user = auth.currentUser;
+      if (user) {
+        addDoc(collection(db, 'users', user.uid, 'sessions'), {
+          key, score: sessScore, total: mergedAnswers.length, date: Date.now(), answers: mergedAnswers
+        }).then(ref => console.log('Saved session to Firestore:', ref.id))
+          .catch(e => console.warn('Could not save session to Firestore', e));
+      }
     }
   } catch (e) {
     console.warn('Could not save session result', e);
@@ -648,24 +733,31 @@ async function finishQuiz(timedOut) {
     r.picked !== undefined && !r.ok ? `<div class="ri-x">✗ Your answer: ${esc(r.q.options[r.picked])}</div>`
       : r.picked === undefined ? `<div class="ri-x">— Not answered</div>` : '')).join('');
   $('#btn-result-review').style.display = '';
+  // Wait for the loader to finish its 0→100 sweep, then reveal the result.
+  await loaderDone;
   show('result');
   window.scrollTo(0, 0);
   quiz = null;
 }
 
 /* ---------- auth ---------- */
-function applySignedInUser(user) {
+async function applySignedInUser(user) {
   if (!user) return;
   const displayName = user.displayName || user.email?.split('@')[0] || 'Learner';
-  state.name = displayName;
-  store.set('name', displayName);
-  if ($('#student-name')) $('#student-name').value = displayName;
+  state.name = state.name || displayName;
+  store.set('name', state.name);
+  if ($('#student-name')) $('#student-name').value = state.name;
   if (!user.emailVerified) {
     showVerificationScreen(user.email);
     return;
   }
+  // Pull saved progress from the cloud once per session BEFORE showing the
+  // dashboard, so a returning user sees their real numbers, not zeros.
+  if (!userStateLoaded) {
+    try { await loadUserState(user); } catch (e) { console.warn(e); }
+  }
   if (!$('#view-welcome').classList.contains('hidden')) enterApp();
-  else renderDashboard();
+  if (!$('#view-home').classList.contains('hidden')) renderDashboard();
 }
 
 async function signInWithGoogle() {
@@ -1010,10 +1102,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (state.name || Object.keys(state.answered).length) enterApp();
   else show('welcome');
-  // apply theme: saved choice wins, otherwise follow the phone/laptop system setting
-  const savedTheme = store.get('theme', null);
-  const wantDark = savedTheme ? savedTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
-  document.documentElement.classList.toggle('dark', wantDark);
+  // Light mode is the default; only go dark if the user explicitly chose it.
+  document.documentElement.classList.toggle('dark', store.get('theme', 'light') === 'dark');
   // wire profile / logout
   if ($('#nav-profile')) $('#nav-profile').addEventListener('click', () => { renderProfile(); show('profile'); });
   if ($('#btn-logout')) $('#btn-logout').addEventListener('click', async () => { try { await signOut(auth); } catch {} store.set('guest', false); show('welcome'); });

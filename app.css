@@ -397,3 +397,18 @@ html.dark .hero-banner{background:linear-gradient(120deg,#1d3456,#2a4e7d)}
   .quiz-header-row{gap:6px}
   .quiz-timer{font-size:.78rem;padding:4px 9px}
 }
+
+/* ================= FINISH LOADER ================= */
+.finish-loader{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(4px)}
+.finish-loader.hidden{display:none}
+.finish-loader-box{width:min(340px,86vw);background:var(--surface);border:1px solid var(--surface-variant);
+  border-radius:18px;box-shadow:var(--shadow);padding:28px 26px;text-align:center}
+.finish-loader-logo{width:56px;height:56px;object-fit:contain;margin-bottom:14px;
+  animation:finish-pop .5s ease}
+.finish-loader-title{font-weight:700;font-size:1.02rem;margin-bottom:16px;color:var(--on-surface)}
+.finish-loader-track{height:12px;background:var(--surface-variant);border-radius:99px;overflow:hidden}
+.finish-loader-fill{height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--primary),#0D9488);transition:width .12s linear}
+.finish-loader-pct{margin-top:10px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--primary-text)}
+@keyframes finish-pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
