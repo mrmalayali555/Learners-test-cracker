@@ -412,3 +412,26 @@ html.dark .hero-banner{background:linear-gradient(120deg,#1d3456,#2a4e7d)}
   background:linear-gradient(90deg,var(--primary),#0D9488);transition:width .12s linear}
 .finish-loader-pct{margin-top:10px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--primary-text)}
 @keyframes finish-pop{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+
+/* ================= TOPBAR TITLE (mobile) ================= */
+.topbar-left{display:flex;align-items:center;gap:8px;flex:none}
+.topbar-right{display:flex;align-items:center;gap:8px;flex:none}
+.topbar-title{flex:1;min-width:0;text-align:center;font-weight:800;letter-spacing:.06em;
+  color:var(--primary-text);font-size:clamp(.95rem,4.5vw,1.2rem);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* ================= COMPLETED SESSION HIGHLIGHT ================= */
+.topic-session.completed{border:1.5px solid var(--ok);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent),var(--shadow)}
+.topic-session.completed .ts-badge{background:var(--ok-container);color:var(--on-ok-container)}
+.topic-session.perfect{box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 40%,transparent),0 8px 24px color-mix(in srgb,var(--ok) 20%,transparent)}
+.topic-session.perfect .ts-badge::after{content:" ✓"}
+
+/* ================= MUTE BUTTON ================= */
+.mute-btn{flex:none}
+.mute-btn.is-muted{opacity:.6}
+
+/* per-question timer emphasis when low */
+.quiz-timer{transition:color .2s,border-color .2s,transform .1s}
+.quiz-timer.warn{color:var(--error);border-color:var(--error);animation:timer-pulse .6s ease infinite}
+@keyframes timer-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}

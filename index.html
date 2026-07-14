@@ -54,7 +54,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         {
           "@type": "Question",
           "name": "How many questions are in the Kerala learners licence test?",
-          "acceptedAnswer": { "@type": "Answer", "text": "The Kerala learners licence computer test has 20 multiple-choice questions and you must answer at least 12 correctly to pass. RTO Cracker's mock tests follow this exact pattern with a 20-minute timer." }
+          "acceptedAnswer": { "@type": "Answer", "text": "RTO Cracker's mock test gives you 30 multiple-choice questions drawn at random from every topic, with 30 seconds per question, and you must answer at least 18 correctly to pass." }
         },
         {
           "@type": "Question",
@@ -85,7 +85,7 @@ try {
     document.documentElement.classList.add('dark');
 } catch (e) {}
 </script>
-<link rel="stylesheet" href="app.css?v=4"/>
+<link rel="stylesheet" href="app.css?v=5"/>
 <link rel="icon" type="image/png" href="/logo.png"/>
 <link rel="apple-touch-icon" href="/logo.png"/>
 <!-- Microsoft Clarity -->
@@ -205,7 +205,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="seo-grid">
       <div>
         <h3>📝 Realistic Mock Tests</h3>
-        <p>Every mock test gives you <strong>20 questions in 20 minutes with a 12/20 pass mark</strong> — exactly like the real Kerala RTO learners test, so there are no surprises on exam day.</p>
+        <p>Every mock test gives you <strong>30 random questions, 30 seconds each, with an 18/30 pass mark</strong> — exactly like the real Kerala RTO learners test, so there are no surprises on exam day.</p>
       </div>
       <div>
         <h3>🚦 Learn All Traffic Signs</h3>
@@ -224,7 +224,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2>Kerala Learners Test — Frequently Asked Questions</h2>
     <div class="seo-faq">
       <h3>How many questions are in the Kerala learners licence test?</h3>
-      <p>The computer-based test has <strong>20 multiple-choice questions</strong> and you must answer at least <strong>12 correctly</strong> to pass. Questions come from traffic signs, road rules, and driving safety topics.</p>
+      <p>RTO Cracker's mock test has <strong>30 multiple-choice questions</strong>, 30 seconds each, and you must answer at least <strong>18 correctly</strong> to pass. Questions come from traffic signs, road rules, and driving safety topics.</p>
       <h3>Is RTO Cracker free to use?</h3>
       <p>Yes — all 827 practice questions, sign images, topic-wise practice, and unlimited mock tests are completely free.</p>
       <h3>What topics should I study for the learners test?</h3>
@@ -281,11 +281,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <main class="main">
     <!-- top bar (mobile) -->
     <header class="topbar">
-      <div style="display:flex;align-items:center;gap:12px">
+      <div class="topbar-left">
         <button id="btn-hamburger" class="icon-btn" aria-label="Open menu">☰</button>
-        <div class="topbar-brand"><img src="/logo.png" alt="RTO Cracker logo" class="topbar-logo"/><span class="topbar-brand-text">RTO Cracker</span></div>
+        <img src="/logo.png" alt="RTO Cracker logo" class="topbar-logo"/>
       </div>
-      <div style="margin-left:auto;display:flex;align-items:center;gap:8px">
+      <div class="topbar-title">RTO CRACKER</div>
+      <div class="topbar-right">
         <button id="btn-theme-toggle" class="theme-toggle icon-btn" aria-label="Toggle theme">🌓</button>
       </div>
       <nav class="topbar-nav">
@@ -331,7 +332,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="quick-col">
           <div class="quick-card mock-cta">
             <h4>Mock Exam</h4>
-            <p>20 questions · 20 minutes<br/>Score 12+ to pass, just like the real RTO computer test.</p>
+            <p>30 random questions · 30 seconds each<br/>Score 18+ to pass, just like the real RTO computer test.</p>
             <button class="btn btn-primary btn-block" data-nav="mock">Take a Mock Test</button>
           </div>
           <div class="quick-card">
@@ -400,9 +401,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="mock-rules card">
         <h4>Exam pattern</h4>
         <ul>
-          <li><strong>20 questions</strong> drawn from the full bank (signs, rules, safety, fines…)</li>
-          <li><strong>20 minutes</strong> total — the timer is always visible</li>
-          <li><strong>12 correct</strong> answers required to pass</li>
+          <li><strong>30 questions</strong> drawn at random from every topic (signs, rules, safety, fines…)</li>
+          <li><strong>30 seconds per question</strong> — a countdown auto-advances when time runs out</li>
+          <li><strong>18 correct</strong> answers required to pass</li>
+          <li>Sound cues as the clock ticks down — tap 🔊 in the test to mute</li>
           <li>No feedback until you submit — just like the real test</li>
         </ul>
         <button class="btn btn-primary" id="btn-mock-start">Start Mock Test →</button>
@@ -434,7 +436,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="quiz-header-row">
       <button class="icon-btn" id="quiz-close" title="Exit">✕</button>
       <div class="quiz-title" id="quiz-title">Practice</div>
-      <div class="quiz-timer" id="quiz-timer">⏱ 20:00</div>
+      <button class="icon-btn mute-btn" title="Mute / unmute sounds" aria-label="Mute sounds">🔊</button>
+      <div class="quiz-timer hidden" id="quiz-timer">⏱ 0:30</div>
     </div>
   </header>
   <div class="quiz-body">
@@ -500,6 +503,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- html2pdf for client-side PDF export -->
 <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.min.js"></script>
-<script type="module" src="app.js?v=4"></script>
+<script type="module" src="app.js?v=5"></script>
 </body>
 </html>

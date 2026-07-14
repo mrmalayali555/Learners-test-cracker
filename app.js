@@ -15,7 +15,7 @@ const CATS = {
   fines:    { name: 'Fines & Penalties',  tag: 'FINES' },
   law:      { name: 'Licence & Documents',tag: 'LAW' },
 };
-const MOCK_N = 20, MOCK_PASS = 12, MOCK_SECS = 20 * 60;
+const MOCK_N = 30, MOCK_PASS = 18, MOCK_Q_SECS = 30;
 
 const authDomain = 'fir-4cdbf.firebaseapp.com';
 const localPreviewUrl = 'http://localhost:8000/rto-cracker/';
@@ -144,6 +144,43 @@ function showTimingToast(message) {
   clearTimeout(showTimingToast._timer);
   showTimingToast._timer = setTimeout(() => toast.classList.add('hidden'), 1600);
 }
+
+/* ---------- sound effects (Web Audio, no external files) ---------- */
+let audioCtx = null;
+function isMuted() { return store.get('muted', false); }
+function tone(freqs, dur, type = 'sine', vol = 0.14) {
+  if (isMuted()) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const now = audioCtx.currentTime;
+    freqs.forEach((f, i) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = type; o.frequency.value = f;
+      o.connect(g); g.connect(audioCtx.destination);
+      const start = now + i * dur;
+      g.gain.setValueAtTime(0.0001, start);
+      g.gain.linearRampToValueAtTime(vol, start + 0.012);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      o.start(start); o.stop(start + dur + 0.02);
+    });
+  } catch (e) { /* ignore */ }
+}
+function playSound(kind) {
+  switch (kind) {
+    case 'select':  tone([440], 0.09, 'triangle', 0.12); break;
+    case 'tick':    tone([900], 0.05, 'square', 0.07); break;
+    case 'timeup':  tone([320, 220], 0.16, 'sawtooth', 0.14); break;
+    case 'start':   tone([523, 659], 0.1, 'sine', 0.12); break;
+    case 'pass':    tone([523, 659, 784, 1047], 0.15, 'sine', 0.16); break;
+    case 'fail':    tone([392, 330, 262], 0.2, 'sine', 0.14); break;
+  }
+}
+function updateMuteButtons() {
+  const muted = isMuted();
+  $$('.mute-btn').forEach(b => { b.textContent = muted ? '🔇' : '🔊'; b.setAttribute('aria-label', muted ? 'Unmute sounds' : 'Mute sounds'); b.classList.toggle('is-muted', muted); });
+}
+function toggleMute() { store.set('muted', !isMuted()); updateMuteButtons(); if (!isMuted()) playSound('select'); }
 /* ---------- views ---------- */
 function show(view) {
   const protectedViews = ['home','mock','saved','wrong','topic','session-detail'];
@@ -306,8 +343,9 @@ function showTopicSessions(cat) {
     const wrong = Math.max(0, attemptedCount - correct);
     const pct = Math.round(100 * attemptedCount / chunk.length);
     const notStarted = attemptedCount === 0;
+    const fullyDone = attemptedCount >= chunk.length;
     const div = document.createElement('div');
-    div.className = 'topic-session';
+    div.className = 'topic-session' + (fullyDone ? ' completed' : '') + (fullyDone && pct === 100 ? ' perfect' : '');
     // show resume button if there's an inprogress session matching this key
     const inprog = state.sessions && state.sessions.inprogress && state.sessions.inprogress.key === key;
     div.innerHTML = `
@@ -446,25 +484,48 @@ function startPractice(cat) {
 }
 
 function startMock() {
-  // balanced draw across categories
-  const per = { signs: 6, rules: 4, safety: 4, fines: 2, markings: 2, signals: 1, law: 1 };
-  let qs = [];
-  for (const [c, n] of Object.entries(per)) qs = qs.concat(shuffle(BANK.filter(q => q.cat === c)).slice(0, n));
-  qs = shuffle(qs).slice(0, MOCK_N);
-  quiz = { mode: 'mock', qs, i: 0, answers: [], secsLeft: MOCK_SECS, questionStartedAt: 0, questionTimes: [], questionCompleted: false };
+  // 30 questions drawn at random from every topic
+  const qs = shuffle(BANK).slice(0, MOCK_N);
+  quiz = { mode: 'mock', qs, i: 0, answers: [], questionStartedAt: 0, questionTimes: [], questionCompleted: false, qTimer: null };
   $('#quiz-title').textContent = 'Mock Test';
-  const t = $('#quiz-timer');
-  t.classList.remove('hidden', 'warn');
-  quiz.timer = setInterval(() => {
-    quiz.secsLeft--;
-    const m = String(Math.floor(quiz.secsLeft / 60)), s = String(quiz.secsLeft % 60).padStart(2, '0');
-    t.textContent = `⏱ ${m}:${s}`;
-    if (quiz.secsLeft <= 120) t.classList.add('warn');
-    if (quiz.secsLeft <= 0) finishQuiz(true);
-  }, 1000);
-  t.textContent = '⏱ 20:00';
+  playSound('start');
   show('quiz');
   renderQuestion();
+}
+
+function clearQuestionTimer() { if (quiz && quiz.qTimer) { clearInterval(quiz.qTimer); quiz.qTimer = null; } }
+
+// Per-question 30-second countdown for the mock exam.
+function startQuestionTimer() {
+  clearQuestionTimer();
+  let left = MOCK_Q_SECS;
+  const t = $('#quiz-timer');
+  t.classList.remove('hidden');
+  const paint = () => {
+    t.textContent = `⏱ 0:${String(left).padStart(2, '0')}`;
+    t.classList.toggle('warn', left <= 10);
+  };
+  paint();
+  quiz.qTimer = setInterval(() => {
+    left--;
+    paint();
+    if (left <= 5 && left > 0) playSound('tick');
+    if (left <= 0) {
+      clearQuestionTimer();
+      playSound('timeup');
+      autoAdvanceMock();
+    }
+  }, 1000);
+}
+
+// Called when a mock question's time runs out: keep any selection, move on.
+function autoAdvanceMock() {
+  if (!quiz.questionCompleted && quiz.answers[quiz.i] === undefined) {
+    quiz.questionTimes[quiz.i] = MOCK_Q_SECS * 1000;
+    quiz.questionCompleted = true;
+  }
+  if (quiz.i < quiz.qs.length - 1) { quiz.i++; renderQuestion(); }
+  else finishQuiz(true);
 }
 
 function downloadResultsPDF() {
@@ -522,7 +583,9 @@ function renderQuestion() {
   next.disabled = true;
   next.textContent = quiz.i === quiz.qs.length - 1 ? (quiz.mode === 'mock' ? 'Submit Test ✓' : 'Finish ✓') : 'Next Question →';
   $('#btn-skip').classList.toggle('hidden', quiz.mode !== 'mock');
-
+  // Mock questions are individually timed; practice has no timer.
+  if (quiz.mode === 'mock') startQuestionTimer();
+  else $('#quiz-timer').classList.add('hidden');
 }
 
 function resumeTopicSession(cat, sessionIndex) {
@@ -592,7 +655,7 @@ function pick(idx, btn) {
     opts.forEach(o => { o.classList.remove('chosen'); o.querySelector('.opt-mark').textContent = ''; });
     btn.classList.add('chosen');
     btn.querySelector('.opt-mark').textContent = '●';
-    showTimingToast(`Completed in ${fmtSecs(elapsed)}`);
+    playSound('select');
   }
   // save in-progress snapshot for resuming
   try {
@@ -607,10 +670,10 @@ function pick(idx, btn) {
 }
 
 function nextQuestion() {
+  clearQuestionTimer();
   if (!quiz.questionCompleted && quiz.answers[quiz.i] === undefined) {
     quiz.questionTimes[quiz.i] = performance.now() - quiz.questionStartedAt;
     quiz.questionCompleted = true;
-    showTimingToast(`Skipped in ${fmtSecs(quiz.questionTimes[quiz.i])}`);
   }
   if (quiz.i < quiz.qs.length - 1) { quiz.i++; renderQuestion(); }
   else finishQuiz(false);
@@ -641,6 +704,7 @@ function runFinishLoader() {
 
 async function finishQuiz(timedOut) {
   if (quiz.timer) clearInterval(quiz.timer);
+  clearQuestionTimer();
   // Show the loading overlay immediately so a slow tap never looks frozen.
   const loaderDone = runFinishLoader();
 
@@ -700,6 +764,7 @@ async function finishQuiz(timedOut) {
     const pass = score >= MOCK_PASS;
     state.mocks.push({ score, total: quiz.qs.length, pass, date: Date.now() });
     persist();
+    playSound(pass ? 'pass' : 'fail');
     $('#result-emoji').textContent = pass ? '🎉' : '📚';
     $('#result-heading').textContent = timedOut ? (pass ? "Time's up — you passed!" : "Time's up!") : (pass ? 'You passed!' : 'Not this time');
     $('#result-score').textContent = `${score} / ${quiz.qs.length}`;
@@ -1021,9 +1086,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   $('#quiz-close').addEventListener('click', () => {
     if (quiz && quiz.mode === 'mock' && !confirm('Exit the mock test? This attempt will be discarded.')) return;
     if (quiz && quiz.timer) clearInterval(quiz.timer);
+    clearQuestionTimer();
     quiz = null;
     show('home');
   });
+  $$('.mute-btn').forEach(b => b.addEventListener('click', toggleMute));
+  updateMuteButtons();
   $('#btn-save-q').addEventListener('click', () => {
     if (!quiz) return;
     const id = quiz.qs[quiz.i].id;
