@@ -1,0 +1,130 @@
+{
+ "signs": [
+  {
+   "slug": "stop",
+   "name": "Stop",
+   "cat": "mandatory",
+   "img": "image1.jpeg"
+  },
+  {
+   "slug": "give-way",
+   "name": "Give Way",
+   "cat": "mandatory",
+   "img": "image3.jpeg"
+  },
+  {
+   "slug": "no-entry",
+   "name": "No Entry",
+   "cat": "mandatory",
+   "img": "image4.jpeg"
+  },
+  {
+   "slug": "horn-prohibited",
+   "name": "Horn Prohibited",
+   "cat": "mandatory",
+   "img": "image6.jpeg"
+  },
+  {
+   "slug": "pedestrians-prohibited",
+   "name": "Pedestrians Prohibited",
+   "cat": "mandatory",
+   "img": "image8.jpeg"
+  },
+  {
+   "slug": "compulsory-keep-left",
+   "name": "Compulsory Keep Left",
+   "cat": "mandatory",
+   "img": "image21.jpeg"
+  },
+  {
+   "slug": "compulsory-left-turn",
+   "name": "Compulsory Left Turn",
+   "cat": "mandatory",
+   "img": "image17.jpeg"
+  },
+  {
+   "slug": "u-turn-prohibited",
+   "name": "U-Turn Prohibited",
+   "cat": "mandatory",
+   "img": "image11.jpeg"
+  },
+  {
+   "slug": "one-way-traffic",
+   "name": "One-Way Traffic",
+   "cat": "mandatory",
+   "img": "image5.jpeg"
+  },
+  {
+   "slug": "school-ahead",
+   "name": "School Ahead",
+   "cat": "cautionary",
+   "img": "image43.jpeg"
+  },
+  {
+   "slug": "pedestrian-crossing",
+   "name": "Pedestrian Crossing",
+   "cat": "cautionary",
+   "img": "image41.jpeg"
+  },
+  {
+   "slug": "narrow-bridge-ahead",
+   "name": "Narrow Bridge Ahead",
+   "cat": "cautionary",
+   "img": "image37.jpeg"
+  },
+  {
+   "slug": "right-hairpin-bend",
+   "name": "Right Hairpin Bend",
+   "cat": "cautionary",
+   "img": "image29.jpeg"
+  },
+  {
+   "slug": "left-hairpin-bend",
+   "name": "Left Hairpin Bend",
+   "cat": "cautionary",
+   "img": "image30.jpeg"
+  },
+  {
+   "slug": "slippery-road",
+   "name": "Slippery Road",
+   "cat": "cautionary",
+   "img": "image38.jpeg"
+  },
+  {
+   "slug": "falling-rocks",
+   "name": "Falling Rocks",
+   "cat": "cautionary",
+   "img": "image45.jpeg"
+  },
+  {
+   "slug": "steep-descent",
+   "name": "Steep Descent",
+   "cat": "cautionary",
+   "img": "image34.jpeg"
+  },
+  {
+   "slug": "cattle",
+   "name": "Cattle on Road",
+   "cat": "cautionary",
+   "img": "image42.jpeg"
+  },
+  {
+   "slug": "hospital",
+   "name": "Hospital",
+   "cat": "informatory",
+   "img": "image62.jpeg"
+  },
+  {
+   "slug": "bus-stop",
+   "name": "Bus Stop",
+   "cat": "informatory",
+   "img": "image16.jpeg"
+  },
+  {
+   "slug": "cycle-track",
+   "name": "Cycle Track",
+   "cat": "informatory",
+   "img": "image40.jpeg"
+  }
+ ]
+}
