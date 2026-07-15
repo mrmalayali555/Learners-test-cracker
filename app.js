@@ -468,6 +468,7 @@ function renderWrong() {
 
 /* ---------- quiz engine ---------- */
 let quiz = null; // {mode, qs, i, answers[], timer, secsLeft, cat, questionStartedAt, questionTimes, questionCompleted}
+let finishing = false; // guards finishQuiz against double-submit / rapid taps
 
 function startPractice(cat) {
   const pool = cat === '*' ? BANK : cat === 'wrong' ? wrongIds().map(id => byId.get(id)).filter(Boolean) : BANK.filter(q => q.cat === cat);
@@ -520,6 +521,7 @@ function startQuestionTimer() {
 
 // Called when a mock question's time runs out: keep any selection, move on.
 function autoAdvanceMock() {
+  if (!quiz || finishing) return;
   if (!quiz.questionCompleted && quiz.answers[quiz.i] === undefined) {
     quiz.questionTimes[quiz.i] = MOCK_Q_SECS * 1000;
     quiz.questionCompleted = true;
@@ -632,6 +634,7 @@ function renderSessionDetail(cat, sessionIndex) {
  
 
 function pick(idx, btn) {
+  if (!quiz || finishing) return;
   const q = quiz.qs[quiz.i];
   if (quiz.answers[quiz.i] !== undefined && quiz.mode === 'practice') return;
   const elapsed = performance.now() - quiz.questionStartedAt;
@@ -670,6 +673,7 @@ function pick(idx, btn) {
 }
 
 function nextQuestion() {
+  if (!quiz || finishing) return;
   clearQuestionTimer();
   if (!quiz.questionCompleted && quiz.answers[quiz.i] === undefined) {
     quiz.questionTimes[quiz.i] = performance.now() - quiz.questionStartedAt;
@@ -703,6 +707,8 @@ function runFinishLoader() {
 }
 
 async function finishQuiz(timedOut) {
+  if (finishing || !quiz) return; // ignore double-submit / repeated taps
+  finishing = true;
   if (quiz.timer) clearInterval(quiz.timer);
   clearQuestionTimer();
   // Show the loading overlay immediately so a slow tap never looks frozen.
@@ -804,6 +810,7 @@ async function finishQuiz(timedOut) {
   show('result');
   window.scrollTo(0, 0);
   quiz = null;
+  finishing = false;
 }
 
 /* ---------- auth ---------- */
@@ -1088,6 +1095,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (quiz && quiz.timer) clearInterval(quiz.timer);
     clearQuestionTimer();
     quiz = null;
+    finishing = false;
     show('home');
   });
   $$('.mute-btn').forEach(b => b.addEventListener('click', toggleMute));
