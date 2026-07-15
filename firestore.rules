@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Each learner can read/write only their own progress
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      match /sessions/{doc} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    // Learners Devi chat logs:
+    //  - a signed-in user may CREATE a log tagged with their own uid
+    //  - ONLY the owner account (by email) may READ them (the admin monitor)
+    //  - nobody can edit or delete logs
+    match /chatlogs/{doc} {
+      allow create: if request.auth != null
+                    && request.resource.data.uid == request.auth.uid;
+      allow read: if request.auth != null
+                  && request.auth.token.email == 'justinkjames123456@gmail.com';
+      allow update, delete: if false;
+    }
+  }
+}

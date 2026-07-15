@@ -1045,7 +1045,82 @@ function toggleTheme() {
 }
 
 /* ---------- events ---------- */
-function enterApp() { $('#view-welcome').classList.add('hidden'); show('home'); applyHashRoute(); }
+/* ---------- Learners Devi (AI study helper) ---------- */
+let deviHistory = [];
+let deviBusy = false;
+function deviVisible() {
+  // only signed-in, verified Firebase users (not guests)
+  const u = auth.currentUser;
+  const el = $('#devi');
+  if (!el) return;
+  el.classList.toggle('hidden', !(u && u.emailVerified));
+}
+function deviAddMsg(text, who, flagged) {
+  const box = $('#devi-msgs');
+  const d = document.createElement('div');
+  d.className = 'devi-msg ' + who + (flagged ? ' flag' : '');
+  d.textContent = text;
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
+  return d;
+}
+function deviOpen() {
+  $('#devi-launch').classList.add('hidden');
+  $('#devi-panel').classList.remove('hidden');
+  if (!$('#devi-msgs').childElementCount) {
+    deviAddMsg('Hi! I\'m Learners Devi 👩‍🏫 Ask me about any traffic sign, road rule, or practice question and I\'ll explain it. (I only help with driving-test topics.)', 'bot');
+  }
+  setTimeout(() => $('#devi-input').focus(), 50);
+}
+function deviClose() {
+  $('#devi-panel').classList.add('hidden');
+  $('#devi-launch').classList.remove('hidden');
+}
+async function deviSend(e) {
+  e.preventDefault();
+  if (deviBusy) return;
+  const input = $('#devi-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  const user = auth.currentUser;
+  if (!user) { deviAddMsg('Please sign in to chat with Learners Devi.', 'bot'); return; }
+  input.value = '';
+  deviAddMsg(msg, 'user');
+  deviBusy = true;
+  $('#devi-send').disabled = true;
+  const typing = deviAddMsg('Learners Devi is typing…', 'bot');
+  typing.classList.add('devi-typing');
+  try {
+    const token = await user.getIdToken();
+    const res = await fetch('/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+      body: JSON.stringify({ message: msg, history: deviHistory.slice(-6) })
+    });
+    const data = await res.json().catch(() => ({}));
+    typing.remove();
+    if (!res.ok) { deviAddMsg(data.error || 'Sorry, something went wrong.', 'bot', true); }
+    else {
+      deviAddMsg(data.answer, 'bot', data.flagged);
+      deviHistory.push({ role: 'user', content: msg }, { role: 'assistant', content: data.answer });
+    }
+  } catch (err) {
+    typing.remove();
+    deviAddMsg('Network problem — please check your connection and try again.', 'bot', true);
+  } finally {
+    deviBusy = false;
+    $('#devi-send').disabled = false;
+    $('#devi-input').focus();
+  }
+}
+function initDevi() {
+  if ($('#devi-launch')) $('#devi-launch').addEventListener('click', deviOpen);
+  if ($('#devi-close')) $('#devi-close').addEventListener('click', deviClose);
+  if ($('#devi-form')) $('#devi-form').addEventListener('submit', deviSend);
+  deviVisible();
+}
+
+function enterApp() { $('#view-welcome').classList.add('hidden'); show('home'); applyHashRoute(); deviVisible(); }
 
 // Deep links from content pages / PWA shortcuts: /#mock, /#signs, /#<category>
 function applyHashRoute() {
@@ -1088,6 +1163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ($('#btn-verify-logout')) $('#btn-verify-logout').addEventListener('click', async () => { await signOut(auth); show('welcome'); });
   if ($('#btn-theme-toggle')) $('#btn-theme-toggle').addEventListener('click', toggleTheme);
   if ($('#btn-theme-float')) $('#btn-theme-float').addEventListener('click', toggleTheme);
+  initDevi();
   $('#btn-google-signin').addEventListener('click', signInWithGoogle);
   $('#btn-guest').addEventListener('click', enterApp);
   $('#btn-guest').addEventListener('click', () => { store.set('guest', true); enterApp(); });
@@ -1162,6 +1238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   onAuthStateChanged(auth, (user) => {
     if (user) applySignedInUser(user);
+    deviVisible();
   });
 
   try {
@@ -1196,7 +1273,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.documentElement.classList.toggle('dark', store.get('theme', 'light') === 'dark');
   // wire profile / logout
   if ($('#nav-profile')) $('#nav-profile').addEventListener('click', () => { renderProfile(); show('profile'); });
-  if ($('#btn-logout')) $('#btn-logout').addEventListener('click', async () => { try { await signOut(auth); } catch {} store.set('guest', false); show('welcome'); });
+  if ($('#btn-logout')) $('#btn-logout').addEventListener('click', async () => { try { await signOut(auth); } catch {} store.set('guest', false); deviHistory = []; deviVisible(); show('welcome'); });
   if ($('#btn-profile-delete')) $('#btn-profile-delete').addEventListener('click', deleteAccountFlow);
   if ($('#btn-profile-back')) $('#btn-profile-back').addEventListener('click', () => { renderDashboard(); show('home'); });
 });

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="robots" content="noindex, nofollow"/>
+<title>Admin · RTO Cracker</title>
+<link rel="icon" type="image/png" href="/logo.png"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/app.css?v=8"/>
+<style>
+  .admin-wrap{max-width:960px;margin:0 auto;padding:26px 16px 60px}
+  .admin-card{background:var(--surface);border:1px solid var(--surface-variant);border-radius:14px;box-shadow:var(--shadow);padding:22px;max-width:420px;margin:40px auto}
+  .admin-card h1{font-size:1.3rem;margin-bottom:6px}
+  .log{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+  .log-item{background:var(--surface);border:1px solid var(--surface-variant);border-left:4px solid var(--primary);border-radius:10px;padding:12px 14px;font-size:.9rem}
+  .log-item.flag{border-left-color:var(--warn-border);background:var(--warn-bg)}
+  .log-meta{font-size:.75rem;color:var(--on-surface-variant);margin-bottom:6px;display:flex;gap:10px;flex-wrap:wrap}
+  .log-q{font-weight:600}
+  .log-a{color:var(--on-surface-variant);margin-top:4px;white-space:pre-wrap;overflow-wrap:anywhere}
+  .admin-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+  .badge-flag{background:var(--warn-border);color:#3a2a00;border-radius:999px;padding:2px 8px;font-size:.7rem;font-weight:700}
+  .muted{color:var(--on-surface-variant)}
+</style>
+</head>
+<body>
+<div class="admin-wrap">
+  <!-- login / gate -->
+  <div id="gate" class="admin-card">
+    <h1>Admin access</h1>
+    <p class="muted" id="gate-msg">Checking sign-in…</p>
+    <div id="gate-actions" style="margin-top:14px;display:none">
+      <button class="btn btn-primary btn-block" id="btn-admin-google">Sign in with the owner account</button>
+    </div>
+    <div id="pw-box" style="margin-top:14px;display:none">
+      <label class="field-label" for="admin-pw">ADMIN PASSWORD</label>
+      <input id="admin-pw" type="password" placeholder="Enter admin password" autocomplete="off"/>
+      <button class="btn btn-primary btn-block" id="btn-admin-pw" style="margin-top:10px">Unlock dashboard</button>
+      <p class="muted" id="pw-msg" style="margin-top:8px"></p>
+      <button class="btn btn-ghost btn-block" id="btn-admin-signout" style="margin-top:10px">Sign out</button>
+    </div>
+  </div>
+
+  <!-- dashboard -->
+  <div id="dash" style="display:none">
+    <div class="admin-bar">
+      <h1 style="font-size:1.4rem;margin:0">Learners Devi — chat monitor</h1>
+      <label style="margin-left:auto;font-size:.85rem"><input type="checkbox" id="only-flagged"/> Only flagged</label>
+      <button class="btn btn-ghost" id="btn-refresh">Refresh</button>
+      <button class="btn btn-ghost" id="btn-dash-signout">Sign out</button>
+    </div>
+    <div class="muted" id="dash-count"></div>
+    <div class="log" id="log"></div>
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+import { getFirestore, collection, query, orderBy, limit, getDocs } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const ADMIN_EMAIL = "justinkjames123456@gmail.com"; // only this signed-in account can read logs (enforced by Firestore rules too)
+const cfg = { apiKey:"AIzaSyBSAQOlqHnkcWCtwOFMeBIVqyjWiHR0zcQ", authDomain:"fir-4cdbf.firebaseapp.com", projectId:"fir-4cdbf", storageBucket:"fir-4cdbf.firebasestorage.app", messagingSenderId:"858814965234", appId:"1:858814965234:web:86b3a9ecf86ee975daf76b" };
+const app = initializeApp(cfg);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const $ = s => document.querySelector(s);
+let all = [];
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    $('#gate').style.display=''; $('#dash').style.display='none';
+    $('#gate-msg').textContent = 'Sign in with the owner account to continue.';
+    $('#gate-actions').style.display=''; $('#pw-box').style.display='none';
+    return;
+  }
+  if ((user.email||'').toLowerCase() !== ADMIN_EMAIL.toLowerCase()) {
+    $('#gate-msg').innerHTML = '⛔ Access denied. This account is not an administrator.';
+    $('#gate-actions').style.display='none';
+    $('#pw-box').style.display='none';
+    const b=document.createElement('button'); b.className='btn btn-ghost btn-block'; b.textContent='Sign out'; b.style.marginTop='12px';
+    b.onclick=()=>signOut(auth); $('#gate').appendChild(b);
+    return;
+  }
+  // owner signed in → require password (checked server-side)
+  $('#gate-msg').textContent = 'Owner verified. Enter the admin password.';
+  $('#gate-actions').style.display='none';
+  $('#pw-box').style.display='';
+});
+
+$('#btn-admin-google').onclick = () => signInWithPopup(auth, new GoogleAuthProvider()).catch(e=>{ $('#gate-msg').textContent='Sign-in failed: '+(e.code||e.message); });
+$('#btn-admin-signout').onclick = () => signOut(auth);
+
+$('#btn-admin-pw').onclick = async () => {
+  const pw = $('#admin-pw').value;
+  $('#pw-msg').textContent = 'Checking…';
+  try {
+    const token = await auth.currentUser.getIdToken();
+    const r = await fetch('/api/admin-verify', { method:'POST', headers:{'Content-Type':'application/json','Authorization':'Bearer '+token}, body: JSON.stringify({ password: pw }) });
+    const d = await r.json().catch(()=>({}));
+    if (!r.ok || !d.ok) { $('#pw-msg').textContent = d.error || 'Wrong password.'; return; }
+    $('#gate').style.display='none'; $('#dash').style.display='';
+    loadLogs();
+  } catch(e){ $('#pw-msg').textContent = 'Error: '+e.message; }
+};
+
+async function loadLogs() {
+  $('#dash-count').textContent = 'Loading chats…';
+  try {
+    const q = query(collection(db,'chatlogs'), orderBy('ts','desc'), limit(500));
+    const snap = await getDocs(q);
+    all = snap.docs.map(d=>d.data());
+    render();
+  } catch(e){ $('#dash-count').textContent = 'Could not load logs: '+(e.code||e.message)+'. (Check Firestore rules allow the owner email to read /chatlogs.)'; }
+}
+function esc(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function render() {
+  const onlyFlag = $('#only-flagged').checked;
+  const rows = all.filter(r=>!onlyFlag || r.flagged);
+  $('#dash-count').textContent = `${rows.length} message(s)` + (onlyFlag?' (flagged)':` · ${all.filter(r=>r.flagged).length} flagged total`);
+  $('#log').innerHTML = rows.map(r=>{
+    const t = r.ts ? new Date(r.ts).toLocaleString() : '';
+    return `<div class="log-item ${r.flagged?'flag':''}">
+      <div class="log-meta"><span>${esc(r.email)}</span><span>${t}</span>${r.flagged?'<span class="badge-flag">FLAGGED</span>':''}</div>
+      <div class="log-q">Q: ${esc(r.question)}</div>
+      <div class="log-a">A: ${esc(r.answer)}</div>
+    </div>`;
+  }).join('') || '<p class="muted">No messages yet.</p>';
+}
+$('#only-flagged').onchange = render;
+$('#btn-refresh').onclick = loadLogs;
+$('#btn-dash-signout').onclick = () => signOut(auth);
+</script>
+</body>
+</html>

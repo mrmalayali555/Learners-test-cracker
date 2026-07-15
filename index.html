@@ -129,7 +129,7 @@ try {
     document.documentElement.classList.add('dark');
 } catch (e) {}
 </script>
-<link rel="stylesheet" href="app.css?v=8"/>
+<link rel="stylesheet" href="app.css?v=9"/>
 <!-- Icons + PWA -->
 <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png"/>
@@ -555,6 +555,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <button id="btn-theme-float" class="theme-float" aria-label="Toggle light/dark mode" title="Light / dark mode">🌓</button>
 
+<!-- Learners Devi — AI study helper (signed-in users only) -->
+<div id="devi" class="devi hidden">
+  <button id="devi-launch" class="devi-launch" aria-label="Ask Learners Devi">
+    <span class="devi-ava" aria-hidden="true">👩‍🏫</span><span class="devi-launch-txt">Ask Learners&nbsp;Devi</span>
+  </button>
+  <div id="devi-panel" class="devi-panel hidden" role="dialog" aria-label="Learners Devi chat">
+    <div class="devi-head">
+      <span class="devi-ava" aria-hidden="true">👩‍🏫</span>
+      <div class="devi-title"><strong>Learners Devi</strong><small>Your RTO study helper</small></div>
+      <button id="devi-close" class="icon-btn" aria-label="Close chat">✕</button>
+    </div>
+    <div id="devi-msgs" class="devi-msgs" aria-live="polite"></div>
+    <form id="devi-form" class="devi-form">
+      <input id="devi-input" type="text" maxlength="800" placeholder="Ask about a sign, rule or question…" autocomplete="off" aria-label="Your question"/>
+      <button class="btn btn-primary" type="submit" id="devi-send" aria-label="Send">➤</button>
+    </form>
+    <div class="devi-note">Driving-test topics only · chats are saved for quality &amp; safety</div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <nav class="foot-links" aria-label="Site">
     <a href="/traffic-signs.html">Traffic Signs Guide</a>
@@ -576,6 +596,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- html2pdf for client-side PDF export (self-hosted, pinned) -->
 <script src="/vendor/html2pdf.bundle.min.js?v=0.10.2"></script>
-<script type="module" src="app.js?v=8"></script>
+<script type="module" src="app.js?v=9"></script>
 </body>
 </html>

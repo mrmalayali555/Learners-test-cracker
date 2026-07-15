@@ -496,3 +496,34 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
 .foot-links{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;padding-bottom:10px;border-bottom:1px solid var(--surface-variant)}
 .foot-links a{text-decoration:none;font-weight:600;font-size:.85rem}
+
+/* ================= LEARNERS DEVI (AI chat) ================= */
+.theme-float{left:16px;right:auto}   /* move theme toggle to bottom-left; Devi takes bottom-right */
+.devi{position:fixed;right:16px;bottom:16px;z-index:130}
+.devi-launch{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(90deg,#1A56DB,#0D9488);
+  color:#fff;border:none;border-radius:999px;padding:11px 18px;font-weight:700;font-size:.9rem;
+  box-shadow:0 10px 30px rgba(13,148,136,.35)}
+.devi-launch:hover{filter:brightness(1.05)}
+.devi-ava{font-size:1.15rem;line-height:1}
+.devi-panel{position:fixed;right:16px;bottom:16px;width:min(380px,calc(100vw - 24px));height:min(560px,calc(100dvh - 32px));
+  background:var(--surface);border:1px solid var(--surface-variant);border-radius:16px;box-shadow:0 24px 70px rgba(10,20,40,.35);
+  display:flex;flex-direction:column;overflow:hidden}
+.devi-head{display:flex;align-items:center;gap:10px;padding:12px 14px;background:linear-gradient(90deg,#1A56DB,#0D9488);color:#fff}
+.devi-head .devi-title{display:flex;flex-direction:column;line-height:1.15}
+.devi-head small{opacity:.9;font-size:.72rem}
+.devi-head .icon-btn{margin-left:auto;background:rgba(255,255,255,.18);border-color:transparent;color:#fff}
+.devi-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
+.devi-msg{max-width:85%;padding:10px 13px;border-radius:14px;font-size:.92rem;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.devi-msg.user{align-self:flex-end;background:var(--primary);color:var(--on-primary);border-bottom-right-radius:4px}
+.devi-msg.bot{align-self:flex-start;background:var(--surface);border:1px solid var(--surface-variant);color:var(--on-surface);border-bottom-left-radius:4px}
+.devi-msg.bot.flag{border-color:var(--warn-border)}
+.devi-typing{align-self:flex-start;color:var(--on-surface-variant);font-size:.85rem;padding:6px 4px}
+.devi-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--surface-variant);background:var(--surface)}
+.devi-form input{flex:1;padding:11px 12px}
+.devi-form .btn{padding:10px 15px;min-height:0}
+.devi-note{font-size:.68rem;color:var(--on-surface-variant);text-align:center;padding:0 10px 8px;background:var(--surface)}
+@media (max-width:480px){
+  .devi-launch-txt{display:none}
+  .devi-launch{padding:14px}
+  .devi-ava{font-size:1.4rem}
+}
