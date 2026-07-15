@@ -37,7 +37,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebApplication",
+      "@type": "Organization",
+      "@id": "https://rto-cracker.vercel.app/#org",
+      "name": "RTO Cracker",
+      "url": "https://rto-cracker.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rto-cracker.vercel.app/icons/icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Free online practice platform for the Kerala learners licence (LLR) driving test."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://rto-cracker.vercel.app/#website",
+      "name": "RTO Cracker",
+      "url": "https://rto-cracker.vercel.app/",
+      "publisher": { "@id": "https://rto-cracker.vercel.app/#org" },
+      "inLanguage": "en-IN"
+    },
+    {
+      "@type": ["WebApplication", "SoftwareApplication"],
       "name": "RTO Cracker",
       "url": "https://rto-cracker.vercel.app/",
       "description": "Free Kerala learners licence test practice portal with 827 real question-bank questions, traffic sign images, and timed mock tests following the official RTO exam pattern.",
@@ -46,7 +67,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       "browserRequirements": "Requires JavaScript",
       "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
       "inLanguage": "en-IN",
-      "image": "https://rto-cracker.vercel.app/og-image.png"
+      "image": "https://rto-cracker.vercel.app/og-image.png",
+      "publisher": { "@id": "https://rto-cracker.vercel.app/#org" }
+    },
+    {
+      "@type": "Course",
+      "name": "Kerala Learners Licence Test Preparation",
+      "description": "Topic-by-topic practice covering traffic signs, road markings, signals, rules of the road, safe driving, fines and penalties, and licence documents for the Kerala LLR test.",
+      "url": "https://rto-cracker.vercel.app/",
+      "inLanguage": "en-IN",
+      "provider": { "@id": "https://rto-cracker.vercel.app/#org" },
+      "isAccessibleForFree": true,
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "online",
+        "courseWorkload": "PT2H"
+      }
     },
     {
       "@type": "FAQPage",
@@ -76,18 +112,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   ]
 }
 </script>
+<!-- Resource hints: warm up the connections we use on load -->
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://www.gstatic.com" crossorigin/>
+<link rel="dns-prefetch" href="https://firestore.googleapis.com"/>
+<link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com"/>
+<link rel="dns-prefetch" href="https://www.googletagmanager.com"/>
+<link rel="dns-prefetch" href="https://www.clarity.ms"/>
+<!-- Fonts: Poppins only, essential weights, non-blocking -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 <script>
 try {
   if (JSON.parse(localStorage.getItem('rto_theme')) === 'dark')
     document.documentElement.classList.add('dark');
 } catch (e) {}
 </script>
-<link rel="stylesheet" href="app.css?v=6"/>
+<link rel="stylesheet" href="app.css?v=7"/>
+<!-- Icons + PWA -->
+<link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png"/>
+<link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png"/>
 <link rel="icon" type="image/png" href="/logo.png"/>
-<link rel="apple-touch-icon" href="/logo.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png"/>
+<link rel="manifest" href="/manifest.webmanifest"/>
+<meta name="application-name" content="RTO Cracker"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-title" content="RTO Cracker"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+<meta name="msapplication-TileColor" content="#245fa6"/>
+<meta name="color-scheme" content="light dark"/>
 <!-- Microsoft Clarity -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -111,12 +166,14 @@ try {
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 <!-- ============ WELCOME / LOGIN ============ -->
 <section id="view-welcome" class="view">
   <div class="welcome-split">
     <div class="welcome-hero">
       <div class="hero-badge">🚗 RTO PRACTICE</div>
-      <img class="hero-logo" src="/logo.png" alt="RTO Practice logo" />
+      <img class="hero-logo" src="/logo.png" alt="RTO Cracker logo" width="84" height="84" fetchpriority="high" decoding="async" />
       <h1>Master the Road with Confidence</h1>
       <p>Study with a polished quiz experience, realistic mock tests, and instant feedback designed for learner's licence prep.</p>
       <div class="hero-stats">
@@ -230,8 +287,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h3>What topics should I study for the learners test?</h3>
       <p>Traffic signs, hand signals and police signals, road markings, rules of the road, safe driving practices, fines and penalties under the Motor Vehicles Act, and licence &amp; vehicle documents — RTO Cracker covers the full syllabus topic by topic.</p>
       <h3>How do I pass the learners test on the first attempt?</h3>
-      <p>Practice topic by topic until your accuracy is high, then take mock tests until you consistently score 16+ out of 20. Pay special attention to traffic sign questions — they make up the biggest share of the exam.</p>
+      <p>Practice topic by topic until your accuracy is high, then take mock tests until you consistently score 18+ out of 30. Pay special attention to traffic sign questions — they make up the biggest share of the exam.</p>
     </div>
+
+    <h2>Free Kerala RTO learning guides</h2>
+    <ul class="seo-guides">
+      <li><a href="/traffic-signs.html">Kerala Traffic Signs — complete guide with pictures &amp; meanings</a> — learn mandatory, cautionary and informatory signs for the LLR test.</li>
+    </ul>
   </div>
 </section>
 
@@ -278,12 +340,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </aside>
   <div id="sidebar-backdrop" class="sidebar-backdrop hidden"></div>
 
-  <main class="main">
+  <main class="main" id="main-content" tabindex="-1">
     <!-- top bar (mobile) -->
     <header class="topbar">
       <div class="topbar-left">
         <button id="btn-hamburger" class="icon-btn" aria-label="Open menu">☰</button>
-        <img src="/logo.png" alt="RTO Cracker logo" class="topbar-logo"/>
+        <img src="/logo.png" alt="RTO Cracker logo" class="topbar-logo" width="34" height="34" decoding="async"/>
       </div>
       <div class="topbar-title">RTO CRACKER</div>
       <div class="topbar-right">
@@ -503,6 +565,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- html2pdf for client-side PDF export (self-hosted, pinned) -->
 <script src="/vendor/html2pdf.bundle.min.js?v=0.10.2"></script>
-<script type="module" src="app.js?v=6"></script>
+<script type="module" src="app.js?v=7"></script>
 </body>
 </html>

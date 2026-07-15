@@ -1045,7 +1045,20 @@ function toggleTheme() {
 }
 
 /* ---------- events ---------- */
-function enterApp() { $('#view-welcome').classList.add('hidden'); show('home'); }
+function enterApp() { $('#view-welcome').classList.add('hidden'); show('home'); applyHashRoute(); }
+
+// Deep links from content pages / PWA shortcuts: /#mock, /#signs, /#<category>
+function applyHashRoute() {
+  const h = (location.hash || '').replace('#', '').trim();
+  if (!h) return;
+  if ($('#view-welcome') && !$('#view-welcome').classList.contains('hidden')) return; // wait until signed in / guest
+  try {
+    if (h === 'mock') show('mock');
+    else if (h === 'saved' || h === 'wrong' || h === 'home') show(h);
+    else if (typeof CATS !== 'undefined' && CATS[h]) showTopicSessions(h);
+  } catch (e) { /* ignore */ }
+}
+window.addEventListener('hashchange', applyHashRoute);
 
 document.addEventListener('DOMContentLoaded', async () => {
   if (ensureLocalPreviewHost()) return;

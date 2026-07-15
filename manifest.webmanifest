@@ -1,0 +1,25 @@
+{
+  "name": "RTO Cracker — Kerala Learners Licence Test Practice",
+  "short_name": "RTO Cracker",
+  "description": "Free practice for the Kerala learners licence (LLR) test: 827 real questions, traffic sign images, and timed mock tests.",
+  "id": "/",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f0f4ff",
+  "theme_color": "#245fa6",
+  "lang": "en-IN",
+  "dir": "ltr",
+  "categories": ["education", "productivity"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Take a Mock Test", "short_name": "Mock Test", "url": "/?source=pwa#mock", "description": "Start a 30-question timed mock exam" },
+    { "name": "Practice Traffic Signs", "short_name": "Traffic Signs", "url": "/?source=pwa#signs" }
+  ]
+}
