@@ -14,6 +14,30 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://rto-cracker.vercel.app/road-rules.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rto-cracker.vercel.app/road-markings.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rto-cracker.vercel.app/road-safety.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://rto-cracker.vercel.app/learners-licence-kerala.html</loc>
+    <lastmod>2026-07-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://rto-cracker.vercel.app/traffic-signs/stop.html</loc>
     <lastmod>2026-07-15</lastmod>
     <changefreq>monthly</changefreq>
