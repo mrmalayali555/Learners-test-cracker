@@ -527,3 +527,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .devi-launch{padding:14px}
   .devi-ava{font-size:1.4rem}
 }
+
+/* Learners Devi avatar image + clearer send button */
+.devi-ava-img{width:34px;height:34px;border-radius:50%;object-fit:contain;background:#fff;flex:none;padding:2px}
+.devi-launch .devi-ava-img{width:26px;height:26px;background:transparent;padding:0}
+#devi-send{min-height:44px;min-width:48px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:center}
+#devi-send svg{display:block}

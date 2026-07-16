@@ -1068,7 +1068,7 @@ function deviOpen() {
   $('#devi-launch').classList.add('hidden');
   $('#devi-panel').classList.remove('hidden');
   if (!$('#devi-msgs').childElementCount) {
-    deviAddMsg('Hi! I\'m Learners Devi 👩‍🏫 Ask me about any traffic sign, road rule, or practice question and I\'ll explain it. (I only help with driving-test topics.)', 'bot');
+    deviAddMsg('Hi! I\'m Learners Devi. Ask me about any traffic sign, road rule, or practice question and I\'ll explain it. (I only help with driving-test topics.)', 'bot');
   }
   setTimeout(() => $('#devi-input').focus(), 50);
 }
