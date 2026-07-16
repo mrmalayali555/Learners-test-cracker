@@ -64,24 +64,38 @@ let state = {
 };
 const persist = () => { store.set('answered', state.answered); store.set('saved', state.saved); store.set('mocks', state.mocks); store.set('sessions', state.sessions); store.set('studied', state.studied || []); saveUserState(); };
 
-async function saveUserState() {
+// Firestore rejects any value that is `undefined` (e.g. a skipped question's
+// picked answer) and fails the WHOLE write silently. Round-tripping through JSON
+// drops undefined keys / converts array holes to null, so the write always goes through.
+const cleanForFirestore = v => { try { return JSON.parse(JSON.stringify(v ?? null)); } catch { return null; } };
+
+let syncState = 'idle';
+function setSync(s) { syncState = s; const el = document.querySelector('#sync-dot'); if (el) { el.dataset.sync = s; el.title = s === 'ok' ? 'Progress synced to cloud' : s === 'saving' ? 'Syncing…' : s === 'error' ? 'Sync failed — will retry' : 'Not signed in'; } }
+
+async function saveUserState(retries = 2) {
+  const user = auth.currentUser;
+  if (!user) { setSync('idle'); return false; }
+  setSync('saving');
   try {
-    const user = auth.currentUser;
-    if (!user) return;
-    const uid = user.uid;
-    const docRef = doc(db, 'users', uid);
-    await setDoc(docRef, {
+    await setDoc(doc(db, 'users', user.uid), {
       name: state.name || user.displayName || '',
       email: user.email || '',
-      answered: state.answered,
-      saved: state.saved,
-      mocks: state.mocks,
-      sessions: state.sessions,
-      studied: state.studied || [],
+      answered: cleanForFirestore(state.answered),
+      saved: cleanForFirestore(state.saved),
+      mocks: cleanForFirestore(state.mocks),
+      sessions: cleanForFirestore(state.sessions),
+      studied: cleanForFirestore(state.studied || []),
       updatedAt: Date.now()
     }, { merge: true });
-    console.log('saveUserState: synced to Firestore for', uid);
-  } catch (e) { console.warn('saveUserState failed', e); }
+    setSync('ok');
+    console.log('saveUserState: synced to Firestore for', user.uid);
+    return true;
+  } catch (e) {
+    console.warn('saveUserState failed', e);
+    if (retries > 0) { await new Promise(r => setTimeout(r, 1500)); return saveUserState(retries - 1); }
+    setSync('error');
+    return false;
+  }
 }
 
 // Pull the signed-in user's saved progress from Firestore and merge it with
@@ -125,8 +139,17 @@ async function loadUserState(user) {
 
     if (!state.name) state.name = remote.name || '';
     userStateLoaded = true;
-    persist(); // writes the merged result back to localStorage + Firestore
-    console.log('loadUserState: merged remote progress for', user.uid);
+    // persist merged result locally + push back to cloud (also repairs any doc
+    // that was stuck due to the old undefined-value bug)
+    store.set('answered', state.answered); store.set('saved', state.saved);
+    store.set('mocks', state.mocks); store.set('sessions', state.sessions); store.set('studied', state.studied || []);
+    saveUserState();
+    console.log('loadUserState: merged cloud progress —',
+      Object.keys(state.answered).length, 'answered,',
+      Object.keys(state.sessions || {}).filter(k => k !== 'inprogress').length, 'sessions,',
+      state.mocks.length, 'mocks');
+    // re-render whatever the user is currently looking at
+    if ($('#view-home') && !$('#view-home').classList.contains('hidden')) renderDashboard();
   } catch (e) { console.warn('loadUserState failed', e); userStateLoaded = true; }
 }
 
@@ -1076,6 +1099,30 @@ function deviClose() {
   $('#devi-panel').classList.add('hidden');
   $('#devi-launch').classList.remove('hidden');
 }
+// What is the user looking at right now? Give Devi live context so she can
+// explain the current question ("why is my answer wrong?").
+function deviContext() {
+  const parts = [];
+  try {
+    if (quiz && quiz.qs && quiz.qs[quiz.i]) {
+      const q = quiz.qs[quiz.i];
+      const L = i => String.fromCharCode(65 + i);
+      parts.push(`The user is right now on a ${quiz.mode === 'mock' ? 'mock test' : 'practice'} question (Q${quiz.i + 1} of ${quiz.qs.length}).`);
+      parts.push('Question: ' + q.q);
+      q.options.forEach((o, i) => parts.push(`${L(i)}. ${o}`));
+      parts.push(`Correct answer: ${L(q.answer)}. ${q.options[q.answer]}`);
+      const picked = quiz.answers[quiz.i];
+      if (picked !== undefined && picked !== null)
+        parts.push(`The user chose ${L(picked)} — that was ${picked === q.answer ? 'CORRECT' : 'WRONG'}.`);
+      else parts.push('The user has not answered this question yet.');
+      if (q.img) parts.push('This question shows a traffic-sign image.');
+    }
+    const ids = Object.keys(state.answered);
+    if (ids.length) parts.push(`Overall progress: ${ids.length} questions attempted, ${ids.filter(id => state.answered[id]).length} correct.`);
+  } catch (e) { /* ignore */ }
+  return parts.join('\n');
+}
+
 async function deviSend(e) {
   e.preventDefault();
   if (deviBusy) return;
@@ -1090,23 +1137,34 @@ async function deviSend(e) {
   $('#devi-send').disabled = true;
   const typing = deviAddMsg('Learners Devi is typing…', 'bot');
   typing.classList.add('devi-typing');
-  try {
-    const token = await user.getIdToken();
+  const payload = { message: msg, history: deviHistory.slice(-8), context: deviContext() };
+
+  async function attempt(tries) {
+    const token = await auth.currentUser.getIdToken();
     const res = await fetch('/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-      body: JSON.stringify({ message: msg, history: deviHistory.slice(-6) })
+      body: JSON.stringify(payload)
     });
     const data = await res.json().catch(() => ({}));
-    typing.remove();
-    if (!res.ok) { deviAddMsg(data.error || 'Sorry, something went wrong.', 'bot', true); }
-    else {
-      deviAddMsg(data.answer, 'bot', data.flagged);
-      deviHistory.push({ role: 'user', content: msg }, { role: 'assistant', content: data.answer });
+    if (res.ok) return data;
+    // Auto-retry once more on a "busy" (502/503) response after 2 seconds
+    if ((res.status === 502 || res.status === 503) && tries > 0) {
+      typing.textContent = 'Learners Devi is busy — retrying…';
+      await new Promise(r => setTimeout(r, 2000));
+      return attempt(tries - 1);
     }
+    throw new Error(data.error || 'Sorry, something went wrong.');
+  }
+
+  try {
+    const data = await attempt(1);
+    typing.remove();
+    deviAddMsg(data.answer, 'bot', data.flagged);
+    deviHistory.push({ role: 'user', content: msg }, { role: 'assistant', content: data.answer });
   } catch (err) {
     typing.remove();
-    deviAddMsg('Network problem — please check your connection and try again.', 'bot', true);
+    deviAddMsg(err.message || 'Network problem — please try again.', 'bot', true);
   } finally {
     deviBusy = false;
     $('#devi-send').disabled = false;
@@ -1164,6 +1222,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   if ($('#btn-theme-toggle')) $('#btn-theme-toggle').addEventListener('click', toggleTheme);
   if ($('#btn-theme-float')) $('#btn-theme-float').addEventListener('click', toggleTheme);
   initDevi();
+  if ($('#sync-dot')) $('#sync-dot').addEventListener('click', async () => {
+    if (!auth.currentUser) { showTimingToast('Sign in to sync across devices'); return; }
+    userStateLoaded = false;
+    await loadUserState(auth.currentUser);
+    await saveUserState();
+    showTimingToast('Progress synced');
+  });
   $('#btn-google-signin').addEventListener('click', signInWithGoogle);
   $('#btn-guest').addEventListener('click', enterApp);
   $('#btn-guest').addEventListener('click', () => { store.set('guest', true); enterApp(); });

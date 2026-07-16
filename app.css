@@ -533,3 +533,20 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .devi-launch .devi-ava-img{width:26px;height:26px;background:transparent;padding:0}
 #devi-send{min-height:44px;min-width:48px;padding:10px 14px;display:inline-flex;align-items:center;justify-content:center}
 #devi-send svg{display:block}
+
+/* Send button always visible + never shrinks */
+.devi-form{align-items:flex-end}
+#devi-send{flex:none}
+/* On phones, make the chat full-screen so the on-screen keyboard can't hide the send button */
+@media (max-width:560px){
+  .devi-panel{inset:0;right:0;bottom:0;width:100%;height:100dvh;max-height:100dvh;border-radius:0}
+  .devi-msgs{padding-bottom:8px}
+  .devi-form{padding:10px 10px calc(10px + env(safe-area-inset-bottom))}
+}
+/* Sync status dot */
+.sync-dot{width:12px;height:12px;border-radius:50%;flex:none;cursor:pointer;border:2px solid var(--surface);box-shadow:0 0 0 1px var(--outline)}
+.sync-dot[data-sync="ok"]{background:#1a7f37}
+.sync-dot[data-sync="saving"]{background:#f0b429;animation:pulse-dot 1s infinite}
+.sync-dot[data-sync="error"]{background:#ba1a1a}
+.sync-dot[data-sync="idle"]{background:var(--outline)}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}

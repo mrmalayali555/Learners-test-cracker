@@ -61,30 +61,42 @@ export default async function handler(req, res) {
     if (!message) return res.status(400).json({ error: 'Please type a question.' });
     if (message.length > 800) return res.status(400).json({ error: 'Please keep your question under 800 characters.' });
 
-    const history = Array.isArray(req.body.history) ? req.body.history.slice(-6) : [];
+    const history = Array.isArray(req.body.history) ? req.body.history.slice(-8) : [];
+    const context = (req.body && typeof req.body.context === 'string') ? req.body.context.slice(0, 1500) : '';
     const flagged = isSuspicious(message);
 
     // 3) Ask the model (key stays server-side)
     if (!process.env.NVIDIA_API_KEY) return res.status(500).json({ error: 'AI is not configured yet. (Admin: set NVIDIA_API_KEY.)' });
     const messages = [{ role: 'system', content: SYSTEM_PROMPT }];
+    // Live context: what the user is looking at right now (current question, progress)
+    if (context) messages.push({ role: 'system', content: 'LIVE CONTEXT — what the user is doing on the site right now (use it to answer "why is my current question wrong?" etc.):\n' + context });
+    // Prior conversation so replies stay in context, not like a fresh chat
     for (const h of history) {
       if (h && (h.role === 'user' || h.role === 'assistant') && typeof h.content === 'string')
         messages.push({ role: h.role, content: h.content.slice(0, 800) });
     }
     messages.push({ role: 'user', content: message });
 
-    const ai = await fetch(NVIDIA_URL, {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer ' + process.env.NVIDIA_API_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: MODEL, messages, temperature: 0.4, top_p: 0.95, max_tokens: 700,
-        chat_template_kwargs: { enable_thinking: false }, stream: false
-      })
-    });
+    // Call the model with automatic retry on transient "busy" errors (503/502/429)
+    let ai, lastStatus = 0;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      ai = await fetch(NVIDIA_URL, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + process.env.NVIDIA_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: MODEL, messages, temperature: 0.4, top_p: 0.95, max_tokens: 700,
+          chat_template_kwargs: { enable_thinking: false }, stream: false
+        })
+      });
+      if (ai.ok) break;
+      lastStatus = ai.status;
+      if (![429, 500, 502, 503, 504].includes(ai.status)) break; // don't retry real errors
+      if (attempt < 2) await new Promise(r => setTimeout(r, 2000)); // wait 2s and retry
+    }
     if (!ai.ok) {
-      const t = await ai.text();
-      console.error('NVIDIA error', ai.status, t.slice(0, 200));
-      return res.status(502).json({ error: 'Learners Devi is busy right now. Please try again in a moment.' });
+      const t = await ai.text().catch(() => '');
+      console.error('NVIDIA error', lastStatus, t.slice(0, 200));
+      return res.status(502).json({ error: 'Learners Devi is very busy right now. Please send your message again in a few seconds.' });
     }
     const aidata = await ai.json();
     let answer = aidata.choices?.[0]?.message?.content?.trim() || 'Sorry, I could not answer that. Please try rephrasing.';

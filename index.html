@@ -129,7 +129,7 @@ try {
     document.documentElement.classList.add('dark');
 } catch (e) {}
 </script>
-<link rel="stylesheet" href="app.css?v=10"/>
+<link rel="stylesheet" href="app.css?v=11"/>
 <!-- Icons + PWA -->
 <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png"/>
 <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon-512.png"/>
@@ -353,6 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
       <div class="topbar-title">RTO CRACKER</div>
       <div class="topbar-right">
+        <span id="sync-dot" class="sync-dot" data-sync="idle" title="Sign in to sync" role="button" aria-label="Sync progress"></span>
         <button id="btn-theme-toggle" class="theme-toggle icon-btn" aria-label="Toggle theme">🌓</button>
       </div>
       <nav class="topbar-nav">
@@ -596,6 +597,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 <!-- html2pdf for client-side PDF export (self-hosted, pinned) -->
 <script src="/vendor/html2pdf.bundle.min.js?v=0.10.2"></script>
-<script type="module" src="app.js?v=10"></script>
+<script type="module" src="app.js?v=11"></script>
 </body>
 </html>
